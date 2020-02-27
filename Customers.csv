@@ -1,0 +1,6 @@
+customer_id,first_name,last_name,email,address,city,state,zip
+1,George,Washington,gwashington@usa.gov,3200 Mt Vernon Hwy,Mount Vernon,VA,22121
+2,John,Adams,jadams@usa.gov,1250 Hancock St,Quincy,MA,2169
+3,Thomas,Jefferson,tjefferson@usa.gov,931 Thomas Jefferson Pkwy,Charlottesville,VA,22902
+4,James,Madison,jmadison@usa.gov,11350 Constitution Hwy,Orange,VA,22960
+5,James,Monroe,jmonroe@usa.gov,2050 James Monroe Pkwy,Charlottesville,VA,22902
