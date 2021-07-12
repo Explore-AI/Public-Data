@@ -1,0 +1,58 @@
+{
+    "objects": [
+        {
+            "directoryPath": "#{myS3OutputLoc}",
+            "name": "<fill in>",
+            "id": "<fill in>",
+            "type": "S3DataNode"
+        },
+        {
+            "output": "<fill in>",
+            "id" : "<fill in>",
+            "type" : "ShellCommandActivity",
+            "command" : "#{myShellCmd}",
+            "runsOn": {
+                "ref": "<fill in>"
+              }
+        },
+        {
+            <This is the place where you have to populate a schedule for the data pipeline>
+        },
+        {
+          "instanceType": "t1.micro",
+          "name": "EC2ResourceObj",
+          "id": "<fill in>",
+          "type": "<fill in>",
+          "terminateAfter": "20 Minutes"
+        },
+        {
+            "failureAndRerunMode": "CASCADE",
+            "schedule": {
+              "ref": "SchedulePeriod"
+            },
+            "resourceRole": "<fill in>",
+            "role": "<fill in>",
+            "pipelineLogUri": "<fill in>",
+            "scheduleType": "cron",
+            "name": "Default",
+            "id": "Default"
+          }
+    ],
+    "parameters": [
+      {
+        "description": "S3 output folder",
+        "id": "myS3OutputLoc",
+        "type": "AWS::S3::ObjectKey"
+      },
+      {
+        "default": "echo SUCCESS!! > ${OUTPUT1_STAGING_DIR}/output_file.txt",
+        "description": "Shell command to run",
+        "id": "myShellCmd",
+        "type": "String"
+      }
+    ],
+    "values": {
+      "myShellCmd": "echo SUCCESS!! > ${OUTPUT1_STAGING_DIR}/output_file.txt",
+      "myS3OutputLoc": "s3://<your bucket/dp-folder"
+    }
+}
