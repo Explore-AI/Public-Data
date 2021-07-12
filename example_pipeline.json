@@ -1,0 +1,48 @@
+{
+    "objects": [
+        {
+            "directoryPath": "s3://de-playground",
+            "name": "MyS3Location",
+            "id": "MyS3Location",
+            "type": "S3DataNode"
+        },
+        {
+            "output": {
+                "ref": "MyS3Location"
+              },
+            "id" : "EchoOutput",
+            "type" : "ShellCommandActivity",
+            "command" : "echo ${OUTPUT1_STAGING_DIR}; echo SUCCESS!! > ${OUTPUT1_STAGING_DIR}/output_file.txt",
+            "runsOn": {
+                "ref": "EC2ResourceObj"
+              }
+        },
+        {
+            "id": "SchedulePeriod",
+            "name": "SchedulePeriod",
+            "startAt": "FIRST_ACTIVATION_DATE_TIME",
+            "period": "15 minutes",
+            "type": "Schedule",
+            "occurrences": "1"
+        },
+        {
+          "instanceType": "t1.micro",
+          "name": "EC2ResourceObj",
+          "id": "EC2ResourceObj",
+          "type": "Ec2Resource",
+          "terminateAfter": "20 Minutes"
+        },
+        {
+            "failureAndRerunMode": "CASCADE",
+            "schedule": {
+              "ref": "SchedulePeriod"
+            },
+            "resourceRole": "de-course-resource-role",
+            "role": "de-course-data-pipeline-role",
+            "pipelineLogUri": "s3://de-playground/",
+            "scheduleType": "cron",
+            "name": "Default",
+            "id": "Default"
+          }
+    ]
+}
