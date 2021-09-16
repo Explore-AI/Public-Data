@@ -1,0 +1,83 @@
+{
+    "objects": [
+      {
+        "directoryPath": "#{myS3OutputLoc}/#{format(@scheduledStartTime, 'YYYY-MM-dd-HH-mm-ss')}",
+        "name": "S3OutputLocation",
+        "id": "S3OutputLocation",
+        "type": "S3DataNode"
+      },
+      {
+        "directoryPath": "#{myS3InputLoc}",
+        "name": "S3InputLocation",
+        "id": "S3InputLocation",
+        "type": "S3DataNode"
+      },
+      {
+        "output": {
+          "ref": "S3OutputLocation"
+        },
+        "input": {
+          "ref": "S3InputLocation"
+        },
+        "stage": "true",
+        "name": "ShellCommandActivityObj",
+        "id": "ShellCommandActivityObj",
+        "runsOn": {
+          "ref": "EC2ResourceObj"
+        },
+        "type": "ShellCommandActivity",
+        "command": "#{myShellCmd}"
+      },
+      {
+        "failureAndRerunMode": "CASCADE",
+        "schedule": {
+          "ref": "DefaultSchedule"
+        },
+        "resourceRole": "de-course-resource-role",
+        "role": "de-course-data-pipeline-role",
+        "pipelineLogUri": "s3://de-course-book-case/",
+        "scheduleType": "cron",
+        "name": "Default",
+        "id": "Default"
+      },
+      {
+        "instanceType": "t1.micro",
+        "name": "EC2ResourceObj",
+        "id": "EC2ResourceObj",
+        "type": "Ec2Resource",
+        "terminateAfter": "20 Minutes"
+      },
+      {
+        "occurrences": "4",
+        "period": "15 Minutes",
+        "name": "Every 15 minutes",
+        "id": "DefaultSchedule",
+        "type": "Schedule",
+        "startAt": "FIRST_ACTIVATION_DATE_TIME"
+      }
+    ],
+    "parameters": [
+      {
+        "description": "S3 output folder",
+        "id": "myS3OutputLoc",
+        "type": "AWS::S3::ObjectKey"
+      },
+      {
+        "default": "s3://us-east-1.elasticmapreduce.samples/pig-apache-logs/data",
+        "description": "S3 input folder",
+        "id": "myS3InputLoc",
+        "type": "AWS::S3::ObjectKey"
+      },
+      {
+        "default": "grep -rc \"Ahab\" ${INPUT1_STAGING_DIR}/* > ${OUTPUT1_STAGING_DIR}/output.txt",
+        "description": "Shell command to run",
+        "id": "myShellCmd",
+        "type": "String"
+      }
+    ],
+    "values": {
+      "myShellCmd": "grep -rc \"Ahab\" ${INPUT1_STAGING_DIR}/* > ${OUTPUT1_STAGING_DIR}/output.txt",
+      "myS3InputLoc": "s3://de-course-book-case",
+      "myS3OutputLoc": "s3://de-course-book-case"
+    }
+  }
