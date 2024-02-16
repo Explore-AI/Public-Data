@@ -214,7 +214,7 @@ DROP TABLE IF EXISTS `invoices`;
 CREATE TABLE `invoices` (
   `InvoiceId` smallint(6) DEFAULT NULL,
   `CustomerId` tinyint(4) DEFAULT NULL,
-  `InvoiceDate` varchar(0) DEFAULT NULL,
+  `InvoiceDate` DATETIME NOT NULL,
   `BillingAddress` varchar(40) DEFAULT NULL,
   `BillingCity` varchar(19) DEFAULT NULL,
   `BillingState` varchar(6) DEFAULT NULL,
