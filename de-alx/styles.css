@@ -482,6 +482,14 @@ details:not([open]) > .socratic-summary:hover::after {
     gap: 20px; /* Gap between grid items */
 }
 
+.four-column-grid {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 20px; /* Gap between grid items */
+}
+
 /* for switching to two columns */
 @media (max-width: 768px) {
     .three-column-grid {
