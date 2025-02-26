@@ -1,7 +1,7 @@
 # Data Dictionary: Water Access Analysis Dataset (2015-2020)
 
 ## Dataset Overview
-- **Name**: estimates_of_the_use_of_water_2000202.csv
+- **Name**: estimates_of_the_use_of_water_20002020.csv
 - **Time Period**: 2015-2020
 - **Description**: This dataset contains information about water access and usage across different countries, including urban and rural breakdowns.
 - **Number of Records**: 464
