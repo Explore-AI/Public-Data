@@ -1,7 +1,8 @@
 # Data Dictionary: Water Access Analysis Dataset (2015-2020)
 
 ## Dataset Overview
-- **Name**: estimates_of_the_use_of_water_20002020.csv
+
+- **Name**: estimates_of_the_use_of_water_(2015-2020).csv
 - **Time Period**: 2015-2020
 - **Description**: This dataset contains information about water access and usage across different countries, including urban and rural breakdowns.
 - **Number of Records**: 464
@@ -12,12 +13,14 @@
 ### Identification Variables
 
 #### name
+
 - **Description**: Country or territory name
 - **Type**: String
 - **Example**: "Croatia"
 - **Note**: Primary identifier for each country
 
 #### year
+
 - **Description**: Year of observation
 - **Type**: Integer
 - **Range**: 2015-2020
@@ -26,6 +29,7 @@
 ### Population Variables
 
 #### pop_n
+
 - **Description**: National population in thousands
 - **Type**: Float
 - **Unit**: Thousands of people
@@ -33,6 +37,7 @@
 - **Note**: Contains decimal precision
 
 #### pop_u
+
 - **Description**: Urban population percentage
 - **Type**: Float
 - **Unit**: Percentage (stored as decimal)
@@ -42,6 +47,7 @@
 ### National Water Access Indicators
 
 #### wat_bas_n
+
 - **Description**: Percentage of national population with basic water access
 - **Type**: Float
 - **Unit**: Percentage
@@ -49,6 +55,7 @@
 - **Note**: Basic water access means drinking water from an improved source within 30 minutes round trip
 
 #### wat_lim_n
+
 - **Description**: Percentage of national population with limited water access
 - **Type**: Float
 - **Unit**: Percentage
@@ -56,6 +63,7 @@
 - **Note**: Limited access means more than 30 minutes round trip to collect water from an improved source
 
 #### wat_unimp_n
+
 - **Description**: Percentage of national population using unimproved water sources
 - **Type**: Float
 - **Unit**: Percentage
@@ -63,6 +71,7 @@
 - **Note**: Unimproved sources include unprotected wells and springs
 
 #### wat_sur_n
+
 - **Description**: Percentage of national population using surface water
 - **Type**: String
 - **Unit**: Percentage
@@ -72,24 +81,28 @@
 ### Rural Water Access Indicators
 
 #### wat_bas_r
+
 - **Description**: Percentage of rural population with basic water access
 - **Type**: Float
 - **Unit**: Percentage
 - **Range**: 0-100
 
 #### wat_lim_r
+
 - **Description**: Percentage of rural population with limited water access
 - **Type**: Float
 - **Unit**: Percentage
 - **Range**: 0-100
 
 #### wat_unimp_r
+
 - **Description**: Percentage of rural population using unimproved water sources
 - **Type**: Float
 - **Unit**: Percentage
 - **Range**: 0-100
 
 #### wat_sur_r
+
 - **Description**: Percentage of rural population using surface water
 - **Type**: String
 - **Unit**: Percentage
@@ -98,24 +111,28 @@
 ### Urban Water Access Indicators
 
 #### wat_bas_u
+
 - **Description**: Percentage of urban population with basic water access
 - **Type**: Float
 - **Unit**: Percentage
 - **Range**: 0-100
 
 #### wat_lim_u
+
 - **Description**: Percentage of urban population with limited water access
 - **Type**: Float
 - **Unit**: Percentage
 - **Range**: 0-100
 
 #### wat_unimp_u
+
 - **Description**: Percentage of urban population using unimproved water sources
 - **Type**: Float
 - **Unit**: Percentage
 - **Range**: 0-100
 
 #### wat_sur_u
+
 - **Description**: Percentage of urban population using surface water
 - **Type**: String
 - **Unit**: Percentage
