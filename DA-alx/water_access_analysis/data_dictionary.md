@@ -177,4 +177,7 @@
    - Cross-reference urban/rural populations with national totals
 
 ## Source Information
-This dataset is used for analyzing global water access patterns and monitoring progress towards Sustainable Development Goal 6 (Clean Water and Sanitation).
+- **Primary Source**: WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene
+- **Dataset URL**: https://washdata.org/data
+- **Last Updated**: 2020
+- **Publisher**: World Health Organization (WHO) and United Nations Children's Fund (UNICEF)
