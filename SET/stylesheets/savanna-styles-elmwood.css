@@ -1,0 +1,926 @@
+/* Brand */
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('./fontawesome/scss/fontawesome.scss');
+@import url('./fontawesome/scss/solid.scss');
+@import url('./fontawesome/scss/brands.scss');
+
+:root {
+    --color-light: #ffffff;
+    --color-primary: #103049;
+    --color-secondary: #b4e000;
+    --color-tertiary: #05607f;
+    --color-accent: #49b318;
+
+    --color-primary-hover: #40596d;
+    --color-secondary-hover: #c3e633;
+    --color-tertiary-hover: #05607f;
+    --color-accent-hover: #6dc246;
+
+    --color-primary-40: #708392;
+    --color-primary-60: #9facb6;
+    --color-primary-80: #cfd6db;
+    --color-secondary-40: #d2ec66;
+    --color-secondary-60: #e1f399;
+    --color-secondary-80: #f0f9cc;
+    --color-tertiary-40: #69a0b2;
+    --color-tertiary-60: #9bbfcc;
+    --color-tertiary-80: #cddfe5;
+    --color-accent-40: #92d174;
+    --color-accent-60: #b6e1a3;
+    --color-accent-80: #dbf0d1;
+    --color-light-background: #cfd6db;
+
+    --font-family: 'Lexend', sans-serif;
+
+    --primary-logo-icon: url("https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Dropdown_Arrow_Navy.png?raw=true");
+    --secondary-logo-icon: url("https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Dropdown_Arrow_Green.png?raw=true");
+    --light-logo-icon: url("https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Dropdown_Arrow_Off_White.png?raw=true");
+    --socratic-icon: url("https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Socratic_Girl_thinking.png?raw=true");
+    
+    --icon-primary: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/SET_Logo_Navy.png?raw=true');
+    --icon-light: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/SET_Logo_White.png?raw=true');
+    
+    --twitter-icon-primary: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Twitter_Logo.png?raw=true');
+    --linkedin-icon-primary: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/LinkedIn_Logo.png?raw=true');
+    --instagram-icon-primary: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Instagram_Logo.png?raw=true');
+    --facebook-icon-primary: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Facebook_Logo.png?raw=true');
+
+    --amin-name: "Amin Yusuf";
+    --amin-icon: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/Amin%20avatar_4.png');
+    --tunde-name: "Tunde";
+    --tunde-icon: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/Tunde%20avatar_3.png');
+}
+
+/* General styling */
+
+body {
+  	color: var(--color-primary);
+    font-family: var(--font-family);
+}
+
+h {
+    font-weight: bold;
+}
+
+/* Target all hyperlinks */
+
+a {
+    color: var(--color-tertiary);
+  }
+
+  /* Keep the link color when hovered over */
+
+  a:hover {
+    color: var(--color-tertiary);
+  }
+
+  /* Change link color when visited */
+  
+  a:visited {
+    color: var(--color-accent);
+  }
+
+mark {
+    color: var(--color-primary);
+    background-color: var(--color-secondary);
+    font-weight: bold;
+    display:inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.bold-secondary {
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.bold-tertiary {
+    color: var(--color-tertiary);
+    font-weight: bold;
+}
+
+.bold-accent {
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+figure figcaption {
+    text-align: center;
+    line-height: 20px;
+}
+
+.image-container-light,
+.image-container-dark {
+    width: 100%;
+}
+
+.image-container-light::before {
+    content: "";
+    position: absolute;
+    top: 2vw; /* Adjust the top position */
+    right: 2vw; /* Adjust the left position */
+    background: var(--icon-light);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 5vw;
+    height: 5vw;
+}
+
+.image-container-dark::before {
+    content: "";
+    position: absolute;
+    top: 2vw; /* Adjust the top position */
+    right: 2vw; /* Adjust the left position */
+    background: var(--icon-primary);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 5vw;
+    height: 5vw;
+}
+
+/* Reflections and callouts in accent color */
+
+.reflection-element {
+    background-color: var(--color-accent-80);
+    padding: 20px;
+    text-align: left;
+    border: 3px solid var(--color-accent);
+    border-radius: 5px;
+}
+
+.reflection-element h,
+.callout h {
+    color: var(--color-accent);
+}
+
+.callout {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-light-background);
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.callout::before {
+    content: '';
+    width: 10px;
+    height: 100%;
+    background-color: var(--color-accent);
+    position: absolute;
+    top: 0;
+}
+
+.callout-content {
+    flex: 1; /* Allow text to grow to fill remaining space */
+    padding: 20px; /* Add padding to separate text from image */
+    padding-left: 30px;
+}
+
+/* Click to reveal element styling:
+- Milestone/project task elements are in green
+- Milestone submission elements are dark blue with green text
+- Learning content elements are dark blue with white text
+*/
+
+/* all summary elements */
+summary {
+    list-style-type: none;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-radius: 5px;
+    align-items: center;
+    line-height: 1.33;
+}
+
+/* ensures that the icons do not get pushed outside of the box on width changes */
+summary div {
+    flex: 1; /* Allow the text to grow and shrink as needed */
+    max-width: calc(100% - 25px); /* Set maximum width for the text container */
+    overflow: hidden; /* Hide any overflow of text */
+}
+
+/* set the interactions on the icon of summary */
+summary::after{
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-size: cover;
+    margin-left: .75em;
+}
+
+/* Rotation of the icon when details element is open */
+details[open] > summary::after {
+    transform: rotate(90deg);
+    animation: rotate 0.2s; /* Apply the rotation animation */
+}
+
+/* Add pulsing animation on hover */
+summary:hover::after {
+    animation: pulse 1s infinite alternate; /* Apply the pulse animation */
+}
+
+/* general settings on the container that holds the click-to-reveal */
+details {
+    padding-left: 0px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+/* setting the summary banner styling for milestone tasks */
+.task-summary {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+.task-summary:hover {
+    background-color: var(--color-secondary-hover);
+}
+
+.task-summary::after,
+.content-summary-inverted::after {
+    background: var(--primary-logo-icon);
+    background-size: cover;
+}
+
+/* setting the summary banner styling for submissions */
+.submission-summary {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.submission-summary:hover {
+    background-color: var(--color-primary-hover);
+    color: var(--color-secondary);
+}
+
+.submission-summary::after {
+    background: var(--secondary-logo-icon);
+    background-size: cover;
+}
+
+/* setting the summary banner styling for learning content */
+.content-summary {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    font-weight: bold;
+}
+
+.content-summary:hover,
+.socratic-summary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.content-summary::after {
+    background: var(--light-logo-icon);
+    background-size: cover;
+}
+
+.content-summary-inverted {
+    color: var(--color-primary);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    font-weight: bold;
+}
+
+.content-summary-inverted:hover {
+    background-color: var(--color-primary-80);
+}
+
+.text-segment {
+    padding: 10px;
+    text-align: left;
+    border-radius: 0px;
+}
+
+/* setting the summary banner styling for Socratic content */
+.socratic-summary {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    text-align: center;
+}
+
+.socratic-summary::after {
+    border: 2px solid transparent;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+}
+
+details:not([open]) > .socratic-summary:hover::after {
+    border: 2px solid var(--color-secondary);
+}
+
+.socratic-summary::before {
+    content: '';
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+    background: var(--socratic-icon);
+    background-size: cover; /* Ensure the icon fits within the dimensions */
+    background-position: center; /* Center the icon within the pseudo-element */
+}
+
+/* Flipcards */
+
+.card {
+    perspective: 100%;
+    min-width: 100%; /* Ensure that all cards, even in grid, doesn't extend over the width of the page */
+    height: 100%;
+}
+
+.card-inner {
+    transform-style: preserve-3d;
+    transition: 0.5s transform linear; 
+    height: 100%; /* ensures the card fills the entire space */
+    display: flex;
+}
+  
+.front, .back {
+    backface-visibility: hidden;
+    min-width: 100%;
+    mix-blend-mode: multiply;
+    font-weight: normal; /* Reset font weight */
+    word-wrap: break-word;
+}
+  
+.back {
+    transform: rotateY(180deg) translate(100%, 0%);
+    background: linear-gradient(to right, var(--color-primary) 40%, var(--color-tertiary)); /* Back side gradient background */ 
+    color: white;
+    justify-content: left;
+}
+
+.front {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    justify-content: center;
+    display: flex; /* Add display flex */
+    align-items: center; /* Vertically center the content */
+    text-align: center; /* Center the text horizontally */
+}
+
+.front:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.front::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border: 2px solid transparent; /* Initially transparent border */
+    border-radius: 50%; /* Make it circular */
+    animation: none; /* Disable animation by default */
+    position: absolute;
+    top: 10px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+}
+
+.front:hover::after {
+    border-color: var(--color-secondary); /* Change border color on hover */
+    animation: pulse 1.5s infinite ease-in-out; /* Apply pulse animation on hover */
+}
+
+.flip-checkbox {
+    display: none;
+}
+
+.flip-checkbox:checked + .card .card-inner {
+    transform: rotateY(180deg);
+}
+
+.front p, .back p {
+    padding: 20px;
+    margin: 0;
+    line-height: 1.33;
+}
+
+.back {
+    p {
+    padding: 20px;
+    margin: 0;
+    line-height: 1.33;
+    text-align: left;
+    }
+
+    div {
+      padding: 20px;
+    }
+}
+
+.front p {
+    text-align: center;
+    font-size: 12pt;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Pulsing Circle */
+
+@keyframes pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+}
+  
+/* Title */
+
+.title-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 13%;
+    overflow: hidden;
+}
+
+#title-text {
+    font-size: 3.5vw;
+    font-weight: bold;
+    color: var(--color-secondary);
+    position:absolute;
+    margin-left: 8vw;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.milestone-title-banner {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: url("https://rive.app/s/RRO8q0ET90OIexbWG1G6nw/embed");
+    background-size: cover;
+}
+
+/* Grid Div Elements */
+
+.two-column-grid {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 20px;
+}
+
+.three-column-grid {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 20px; /* Gap between grid items */
+}
+
+/* for switching to two columns */
+@media (max-width: 768px) {
+    .three-column-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* for switching to a single columns */
+@media (max-width: 480px) {
+    .two-column-grid,
+    .three-column-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 1fr;
+    }
+}
+
+/* Milestone/Project instruction page */
+
+.intro-container {
+    min-height: 100px;
+    overflow: auto;
+    display: flex;
+    align-items: flex-start; /* Align items to the top of the container */
+}
+
+.text {
+    width: calc(100% - 165px); /* Adjust width based on image width */
+}
+
+.tools-image-container {
+    max-width: 25vw;
+    position: relative; /* Set position to relative */
+}
+
+.tools-image {
+    width: 150px; /* Set width of the image */
+    height: 45px;
+    /* background: url('project_page_images/Tools_GPT_Grammarly@2x.png') no-repeat center center; /* Set default icon */
+    background: url('https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2024/4/34ecf4a655d3993f5ba76bf3bf3a060f7044e262.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240408%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240408T115240Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=2eb19175ffe30b02a890f86982de6d97d1036e89623bafe6e080be7d251928da') no-repeat center center; /* Set default icon */
+    background-size: contain;
+    margin-left: 15px;
+    position: absolute; /* Set position to absolute */
+    top: 0; /* Align image to the top of its container */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 800px) {
+    .tools-image {
+        width: 60px; /* Set width of the image */
+        height: 100px;
+        /* background-image: url('project_page_images/Tools_Vartical@2x.png'); /* Change icon for smaller screens */
+        background-image: url('https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2024/4/65ffefe74cb3aff97c8271111e88b3c3f4dd26c6.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240408%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240408T115240Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=bcbd63b5c277812568976144a77c09335b6f42d51e897a51caa0962192ab44c9'); /* Change icon for smaller screens */
+    }
+    .text {
+        width: calc(100% - 75px); /* Adjust width based on image width */
+    }
+}
+
+/* Custom List for LOs */
+
+.custom-lo-list {
+    list-style: none; /* Remove default list styles */
+    counter-reset: custom-counter; /* Reset the counter for custom numbering */
+    padding-left: 0px;
+}
+
+.custom-lo-list li {
+    counter-increment: custom-counter; /* Increment the counter for each list item */
+    position: relative; /* Set position relative for absolute positioning of circle */
+    padding-left: 40px; /* Add left padding for circle */
+    margin-bottom: 20px; /* Add some margin between list items */
+    line-height: 1.33; /* Set line-height for proper spacing */
+}
+
+.custom-lo-list li::before {
+    content: counter(custom-counter) "."; /* Use the counter value as content */
+    display: inline-block; /* Make the marker an inline-block element */
+    width: 30px; /* Set width for the marker */
+    height: 30px; /* Set height for the marker */
+    text-align: center; /* Center the number */
+    line-height: 30px; /* Center vertically */
+    background-color: var(--color-accent); /* Set background color for the circle */
+    color: var(--color-light); /* Set text color */
+    border-radius: 50%; /* Make border a circle */
+    position: absolute; /* Position the marker absolutely */
+    left: 0; /* Position the marker to the left */
+    top: 50%; /* Position the marker to the center vertically */
+    transform: translateY(-50%); /* Center the marker vertically */
+    font-weight: bold;
+}
+
+.custom-lo-list li::after {
+    content: '.'; /* Add full stop after the number */
+}
+
+/* custom ALX list */
+
+.custom-alx-list {
+    list-style-type: none; /* Remove default bullets */
+    padding-left: 20px; /* Remove default padding */
+    position: relative; /* Ensure relative positioning for the containing div */
+}
+
+.custom-alx-list li:before {
+    content: "";
+    display: inline-block;
+    width: 15px; /* Adjust the width of the image */
+    height: 15px; /* Adjust the height of the image */
+    background: var(--secondary-logo-icon); /* Use the image specified by the variable */
+    background-size: cover; /* Ensure the image covers the entire space */
+    margin-right: 0.5em; /* Add spacing between the image and text */
+    transform: translateY(25%); /* Rotate the icon by 45 degrees */
+    position: absolute; /* Position the icon relative to the list item */
+    left: 0; /* Align the icon to the left of the list item */
+}
+
+/* Socials Button */
+
+.socials-element {
+    color: var(--color-primary);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.btn-socials {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    width: 210px;
+    height: 50px;
+    background-color: var(--color-primary-80);
+    border-radius: 80px;
+    padding: 0 5px;
+    will-change: transform;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.1)
+    }
+
+    &:hover span {
+        transition-delay: .25s;
+        transform: translateX(-280px)
+    }
+
+    &:hover i {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    i {
+        height: 20px;
+        width: 100%;
+        opacity: 0;
+        color: var(--color-primary);
+        will-change: transform;
+        transform: scale(.1);
+        transition: all .3s ease;
+
+        &:hover {
+            animation: pulse 1s infinite alternate;
+        }
+    }
+
+    .alx-icon {
+        content: var(--icon-primary);
+    }
+
+    .twitter-icon {
+        content: var(--twitter-icon-primary);
+    }
+
+    .linkedin-icon {
+        content: var(--linkedin-icon-primary);
+    }
+
+    .instagram-icon {
+        content: var(--instagram-icon-primary);
+    }
+
+    .facebook-icon {
+        content: var(--facebook-icon-primary);
+    }
+
+    span {
+        position: absolute;
+        z-index: 99;
+        width: 210px;
+        height: 50px;
+        border-radius: 80px;
+        font-family: var(--font-family);
+        font-size: 14px;
+        text-align: center;
+        line-height: 50px;
+        color: var(--color-light);
+        background-color: var(--color-primary);
+        padding: 0 18px;
+        transition: all 1.2s ease;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 200px;
+        height: 100%;
+        border-radius: 80px;
+
+        a {
+            display: flex; /* Use flexbox for the <a> elements */
+            justify-content: center; /* Horizontally center the icons */
+            align-items: center; /* Vertically center the icons */
+        }
+    }
+}
+
+.btn-secondary {
+    cursor: pointer;
+    width: 210px;
+    height: 50px;
+    border-radius: 80px;
+    padding: 0 5px;
+    will-change: transform;
+    transition: all .2s ease-in-out;
+    color: var(--color-primary);
+    background-color: var(--color-secondary);
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+    border: none;
+
+    &:hover {
+        transform: scale(1.1)
+    }
+}
+
+.btn-primary {
+    cursor: pointer;
+    width: 210px;
+    height: 50px;
+    border-radius: 80px;
+    padding: 0 5px;
+    will-change: transform;
+    transition: all 0.2s ease-in-out;
+    color: #ffffff;
+    background-color: #103049;
+    font-family: var(--font-family);
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+    border: none;
+
+    &:hover {
+        transform: scale(1.1)
+    }
+}
+
+  
+/* Video embed styling */
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+
+    iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Adding styles not on Savanna just yet */
+
+.chat-container {
+    width: 90%;
+    margin: 50px auto;
+    background-color: var(--color-light);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+  
+.chat-header {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    font-size: 14px;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: right;
+    font-weight: bold;
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+.chat-date {
+    content: "xxxx";
+    font-weight: bold;
+}
+
+.message-container-received {
+    display: flex;
+    align-items: end;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.message-container-sent {
+    display: flex;
+    align-items: end;
+    justify-content: flex-start;
+    margin: 10px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--color-light);
+    max-width: 50%; /* Adjust the max-width as needed */
+}
+
+.message-container-received .message {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+.message-container-sent .message {
+    background-color: var(--color-tertiary);
+}
+
+.sender {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.sender.amin {
+    background-image: var(--amin-icon);
+}
+
+.sender.amin::before {
+    content: var(--amin-name);
+    position: absolute; /* Position the user's name */
+    right: calc(100% + 10px);
+}
+
+.sender.tunde {
+    background-image: var(--tunde-icon);
+}
+
+.message-container-received::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.message-container-received.amin::after,
+.message-container-sent.amin::before {
+    background-image: var(--amin-icon);
+}
+
+.message-container-received.tunde::after,
+.message-container-sent.tunde::before {
+    background-image: var(--tunde-icon);
+}
+
+.message-container-sent::before {
+    content: "";
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+  
+  /* Lesson Learning Outcome Box, but can be used for other similar box use cases (by replacing image)*/
+
+  .lesson-box {
+    max-width: 720px;
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f9cc;
+    border: 3px solid var(--color-secondary);
+    border-radius: 5px;
+    margin: 20px 0;
+  }
+  
+  .lesson-table {
+    border-collapse: collapse;
+    background-color: #f0f9cc;
+    border: none;
+    margin: 0 auto;
+    width: auto;
+  }
+  
+  .lesson-icon {
+    width: 20%;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .lesson-text {
+    width: 80%;
+    vertical-align: middle;
+  }
+  
+  .bold-tertiary {
+    font-weight: bold;
+    color: #05607f; /* or another tertiary highlight color */
+  }
