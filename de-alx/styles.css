@@ -899,3 +899,29 @@ details:not([open]) > .socratic-summary:hover::after {
     height: inherit;
     overflow-y: auto;
 }
+/*Avatar callout*/
+.avatar-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background-color: var(--color-light-background);
+  border-left: 10px solid var(--color-accent);
+  border-radius: 6px;
+  padding: 20px;
+  margin: 1.5em 0;
+  font-family: var(--font-family);
+  color: var(--color-primary);
+}
+.avatar-image {
+  width: 80px;
+  height: 80px;
+  background-image: var(--avatar-img);
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.avatar-text {
+  flex: 1;
+  line-height: 1.5;
+}
