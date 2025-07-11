@@ -925,3 +925,91 @@ details:not([open]) > .socratic-summary:hover::after {
   flex: 1;
   line-height: 1.5;
 }
+
+ .content-step-box {
+ border-left: 8px solid var(--color-tertiary);
+ background-color: var(--color-tertiary-80);
+ border-radius: 6px;
+ padding: 20px;
+ margin: 1.5em 0;
+ font-family: var(--font-family);
+ color: var(--color-primary);
+}
+.content-step-text {
+ font-size: 1rem;
+ line-height: 1.5;
+}
+.instruction-callout {
+ background-color: var(--color-light-background);
+ border-left: 10px solid var(--color-tertiary);
+ border-radius: 6px;
+ padding: 20px;
+ margin: 1.5em 0;
+ font-family: var(--font-family);
+ color: var(--color-primary);
+}
+.instruction-text p {
+ margin-bottom: 10px;
+ font-weight: 500;
+}
+.instruction-text ul {
+ padding-left: 20px;
+ margin: 0;
+ list-style-type: disc;
+}
+.instruction-text li {
+ margin-bottom: 10px;
+ line-height: 1.5;
+}
+  .tripod-container {
+     width: 100%;
+     max-width: 800px;
+     margin: 2rem auto;
+   }
+   svg {
+     width: 100%;
+     height: auto;
+   }
+   .tripod-leg,
+   .tripod-center {
+     stroke: #002b56;
+     stroke-width: 8;
+     stroke-linecap: round;
+     transition: stroke 0.3s, stroke-width 0.3s;
+     cursor: pointer;
+   }
+   .tripod-leg:hover,
+   .tripod-center:hover {
+     stroke: #05F283;
+     stroke-width: 10;
+   }
+   .selected {
+     stroke: #05F283 !important;
+     stroke-width: 12 !important;
+   }
+   text {
+     fill: #002b56;
+     font-weight: bold;
+     cursor: pointer;
+     user-select: none;
+     transition: fill 0.3s;
+   }
+   text:hover {
+     fill: #05F283;
+   }
+   #narrative {
+     margin-top: 30px;
+     color: #002b56;
+     padding: 1rem;
+     background: #fff;
+     border-radius: 8px;
+     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+     display: none;
+     opacity: 0;
+     transition: opacity 0.4s ease;
+   }
+   #narrative.show {
+     display: block;
+     opacity: 1;
+   }
+</style>
