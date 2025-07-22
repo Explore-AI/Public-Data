@@ -937,7 +937,21 @@ details:not([open]) > .socratic-summary:hover::after {
   flex: 1;
   line-height: 1.5;
 }
-
+.callout-two {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-light-background);
+    position: relative;
+    margin-bottom: 15px;
+}
+.callout-two::before {
+    content: '';
+    width: 10px;
+    height: 100%;
+    background-color: var(--color-tertiary); /* #028ECA */
+    position: absolute;
+    top: 0;
+}
  .content-step-box {
  border-left: 8px solid var(--color-tertiary);
  background-color: var(--color-tertiary-80);
