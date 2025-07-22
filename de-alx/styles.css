@@ -952,7 +952,28 @@ details:not([open]) > .socratic-summary:hover::after {
     position: absolute;
     top: 0;
 }
- .content-step-box {
+.reflection-element-two {
+  background-color: var(--color-tertiary-80); /* light blue background */
+  padding: 20px;
+  text-align: left;
+  border: 3px solid var(--color-tertiary); /* blue border */
+  border-radius: 5px;
+}
+.reflection-element-two h {
+  color: var(--color-tertiary); /* blue heading */
+}
+ 
+
+
+
+
+
+
+
+
+
+
+.content-step-box {
  border-left: 8px solid var(--color-tertiary);
  background-color: var(--color-tertiary-80);
  border-radius: 6px;
