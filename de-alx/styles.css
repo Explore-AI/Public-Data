@@ -962,6 +962,27 @@ details:not([open]) > .socratic-summary:hover::after {
 .reflection-element-two h {
   color: var(--color-tertiary); /* blue heading */
 }
+.info-card {
+  background: var(--color-light-background);
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: var(--color-primary);
+  font-family: var(--font-family);
+}
+.info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.info-card h4 {
+  color: var(--color-accent);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.info-card p {
+  line-height: 1.5;
+}
  
 
 
@@ -1059,4 +1080,3 @@ details:not([open]) > .socratic-summary:hover::after {
      display: block;
      opacity: 1;
    }
-</style>
