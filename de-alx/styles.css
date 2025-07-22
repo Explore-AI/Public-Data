@@ -983,6 +983,57 @@ details:not([open]) > .socratic-summary:hover::after {
 .info-card p {
   line-height: 1.5;
 }
+.info-card-do {
+  background-color: var(--color-secondary-80); /* Soft green */
+  border: 1px solid var(--color-secondary-60);
+  border-radius: 8px;
+  padding: 20px;
+  color: var(--color-primary);
+  font-family: var(--font-family);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.info-card-do:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.info-card-do h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.info-card-do strong {
+  color: var(--color-secondary);
+}
+.info-card-dont {
+  background-color: #ffefee; /* Soft red tone */
+  border: 1px solid #ffd5d2; /* Muted border */
+  border-radius: 8px;
+  padding: 20px;
+  color: var(--color-primary);
+  font-family: var(--font-family);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.info-card-dont:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.info-card-dont h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.info-card-dont strong {
+  color: #ff5347;
+}
+.info-card-do ul,
+.info-card-dont ul {
+  padding-left: 20px;
+  margin: 0;
+  list-style-type: disc;
+  line-height: 1.5;
+}
+.info-card-do li,
+.info-card-dont li {
+  margin-bottom: 10px;
+}
  
 
 
