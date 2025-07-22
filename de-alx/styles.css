@@ -912,6 +912,18 @@ details:not([open]) > .socratic-summary:hover::after {
   font-family: var(--font-family);
   color: var(--color-primary);
 }
+.avatar-callout-two {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: var(--color-light-background);
+    border-left: 10px solid var(--color-tertiary); /* #028ECA */
+    border-radius: 6px;
+    padding: 20px;
+    margin: 1.5em 0;
+    font-family: var(--font-family);
+    color: var(--color-primary);
+}
 .avatar-image {
   width: 80px;
   height: 80px;
