@@ -1034,6 +1034,42 @@ details:not([open]) > .socratic-summary:hover::after {
 .info-card-dont li {
   margin-bottom: 10px;
 }
+.expandable-table-container {
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 900px;
+  font-family: var(--font-family);
+  color: var(--color-primary);
+}
+.expandable-table summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 5px;
+}
+.expandable-table table {
+  margin-top: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95em;
+}
+.expandable-table th,
+.expandable-table td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.expandable-table thead {
+  background-color: var(--color-tertiary); /* #028ECA */
+  color: var(--color-light);
+}
+.expandable-table td ul {
+  padding-left: 20px;
+  margin: 0;
+  list-style-type: disc;
+  line-height: 1.5;
+}
  
 
 
