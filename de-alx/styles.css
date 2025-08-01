@@ -1037,7 +1037,6 @@ details:not([open]) > .socratic-summary:hover::after {
 .expandable-table-container {
   border-radius: 8px;
   margin: 20px auto;
-  max-width: 900px;
   font-family: var(--font-family);
   color: var(--color-primary);
 }
