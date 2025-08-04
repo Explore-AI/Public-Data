@@ -1039,6 +1039,7 @@ details:not([open]) > .socratic-summary:hover::after {
   margin: 20px auto;
   font-family: var(--font-family);
   color: var(--color-primary);
+  max-width:none;
 }
 .expandable-table summary {
   list-style: none;
