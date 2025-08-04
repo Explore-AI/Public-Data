@@ -1000,9 +1000,6 @@ details:not([open]) > .socratic-summary:hover::after {
   margin-bottom: 10px;
   font-weight: 600;
 }
-.info-card-do strong {
-  color: var(--color-secondary);
-}
 .info-card-dont {
   background-color: #ffefee; /* Soft red tone */
   border: 1px solid #ffd5d2; /* Muted border */
@@ -1019,9 +1016,6 @@ details:not([open]) > .socratic-summary:hover::after {
 .info-card-dont h4 {
   margin-bottom: 10px;
   font-weight: 600;
-}
-.info-card-dont strong {
-  color: #ff5347;
 }
 .info-card-do ul,
 .info-card-dont ul {
