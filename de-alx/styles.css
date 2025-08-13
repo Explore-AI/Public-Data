@@ -1113,7 +1113,7 @@ details.content-summary-discovery[open] > summary::after {
   vertical-align: top;
 }
 .expandable-table thead {
-  background-color: var(--color-tertiary); /* --color-tertiary */
+  background-color: #002b56; /* --color-tertiary */
   color: var(--color-light);
 }
 .expandable-table td ul {
@@ -1125,7 +1125,7 @@ details.content-summary-discovery[open] > summary::after {
 
 /* Tabs */
 .tabs {
-  --tab-bg: #002b56;
+  --tab-bg: #5648b7;
   --tab-text: #fff;
   margin: 18px 0;
   border-radius: 6px;
