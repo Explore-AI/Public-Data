@@ -171,3 +171,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if (copyBtn) copyBtn.addEventListener("click", handleCopy);
     if (clearBtn) clearBtn.addEventListener("click", handleClear);
   });
+});
