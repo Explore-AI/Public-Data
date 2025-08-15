@@ -1014,12 +1014,7 @@ details:not([open]) > .socratic-summary:hover::after {
   position: absolute;
   top: 0;
 }
-.callout-electric::before {
-  background-color: var(--color-electric);
-}
-.callout-electric h {
-  color: var(--color-primary);
-}
+
 /* Refelection */
 .reflection-element-two {
   background-color: var(--color-tertiary-80); /* light blue background */
@@ -1055,6 +1050,23 @@ details:not([open]) > .socratic-summary:hover::after {
 .content-summary-reflection:hover::after,
 details[open] > .content-summary-reflection::after {
   background-color: var(--color-electric) !important;
+}
+
+.content-summary-gold {
+  color: var(--color-gold) !important;
+}
+
+.content-summary-gold::after {
+  background: none;
+  background-image: none;
+  -webkit-mask: var(--gold-logo-icon) center / contain no-repeat;
+  mask: var(--gold-logo-icon) center / contain no-repeat;
+  background-color: var(--color-gold) !important;
+}
+
+.content-summary-gold:hover::after,
+details[open] > .content-summary-gold::after {
+  background-color: var(--color-gold) !important;
 }
 
 /* If you want inverted to use a dark icon color on light backgrounds */
@@ -1118,7 +1130,7 @@ details.content-summary-discovery[open] > summary::after {
   vertical-align: top;
 }
 .expandable-table thead {
-  background-color: var(--color-tertiary); /* --color-tertiary */
+  background-color: #002b56; /* --color-tertiary */
   color: var(--color-light);
 }
 .expandable-table td ul {
@@ -1130,7 +1142,7 @@ details.content-summary-discovery[open] > summary::after {
 
 /* Tabs */
 .tabs {
-  --tab-bg: #002b56;
+  --tab-bg: #5648b7;
   --tab-text: #fff;
   margin: 18px 0;
   border-radius: 6px;
@@ -1381,6 +1393,71 @@ details.content-summary-discovery[open] > summary::after {
 .info-card-do li,
 .info-card-dont li {
   margin-bottom: 10px;
+}
+
+/* Sentimant analysis survey Pre course*/
+.wfr-sentiment-survey {
+  --slider-h: 6px;
+}
+
+.wfr-sentiment-survey .survey-btn {
+  background-color: var(--color-tertiary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+.wfr-sentiment-survey .survey-btn:hover {
+  opacity: 0.9;
+}
+
+.wfr-sentiment-survey .survey-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  accent-color: var(--color-tertiary);
+}
+.wfr-sentiment-survey .survey-slider::-webkit-slider-runnable-track {
+  height: var(--slider-h);
+  border-radius: 999px;
+  background: linear-gradient(var(--color-tertiary), var(--color-tertiary)) 0 / var(--sx) 100% no-repeat, #e5e7eb;
+}
+.wfr-sentiment-survey .survey-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-tertiary);
+  border: 2px solid #fff;
+  margin-top: calc(-0.5 * (16px - var(--slider-h)));
+}
+.wfr-sentiment-survey .survey-slider::-moz-range-track {
+  height: var(--slider-h);
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+.wfr-sentiment-survey .survey-slider::-moz-range-progress {
+  height: var(--slider-h);
+  border-radius: 999px;
+  background: var(--color-tertiary);
+}
+.wfr-sentiment-survey .survey-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-tertiary);
+  border: 2px solid #fff;
+}
+.wfr-sentiment-survey .survey-slider:focus {
+  outline: none;
+}
+
+.wfr-sentiment-survey .bar {
+  fill: var(--color-tertiary);
 }
 
 /* Checklist */
