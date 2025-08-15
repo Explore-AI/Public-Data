@@ -1014,6 +1014,12 @@ details:not([open]) > .socratic-summary:hover::after {
   position: absolute;
   top: 0;
 }
+.callout-electric::before {
+  background-color: var(--color-electric) !important;
+}
+.callout-electric h {
+  color: var(--color-primary) !important;
+}
 
 /* Refelection */
 .reflection-element-two {
