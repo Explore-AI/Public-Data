@@ -6,6 +6,7 @@
 @import url('./fontawesome/scss/brands.scss');
 
 :root {
+
     --color-light: #ffffff;
     --color-primary: #002b56;
     --color-secondary: #05F283;
