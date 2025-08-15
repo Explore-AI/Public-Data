@@ -1013,7 +1013,12 @@ details:not([open]) > .socratic-summary:hover::after {
   position: absolute;
   top: 0;
 }
-
+.callout-electric::before {
+  background-color: var(--color-electric);
+}
+.callout-electric h {
+  color: var(--color-primary);
+}
 /* Refelection */
 .reflection-element-two {
   background-color: var(--color-tertiary-80); /* light blue background */
@@ -1026,9 +1031,7 @@ details:not([open]) > .socratic-summary:hover::after {
   color: var(--color-tertiary); /* blue heading */
 }
 .reflection-element-electric {
-  background-color: var(
-    --color-electric-80
-  ) !important; /* light electric background */
+  background-color: var(--color-electric-80) !important; /* light electric background */
   border: 3px solid var(--color-electric) !important; /* electric border */
 }
 .reflection-element-electric h {
@@ -1114,7 +1117,7 @@ details.content-summary-discovery[open] > summary::after {
   vertical-align: top;
 }
 .expandable-table thead {
-  background-color: #002b56; /* --color-tertiary */
+  background-color: var(--color-tertiary); /* --color-tertiary */
   color: var(--color-light);
 }
 .expandable-table td ul {
@@ -1126,7 +1129,7 @@ details.content-summary-discovery[open] > summary::after {
 
 /* Tabs */
 .tabs {
-  --tab-bg: #5648b7;
+  --tab-bg: #002b56;
   --tab-text: #fff;
   margin: 18px 0;
   border-radius: 6px;
@@ -1215,11 +1218,7 @@ details.content-summary-discovery[open] > summary::after {
   color: var(--color-light);
 }
 .back.back-discovery {
-  background: linear-gradient(
-    to right,
-    var(--color-tertiary) 40%,
-    var(--color-primary)
-  );
+  background: linear-gradient(to right, var(--color-tertiary) 40%, var(--color-primary));
   color: var(--color-light);
 }
 .back.back-discovery,
