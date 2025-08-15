@@ -1341,6 +1341,9 @@ details.content-summary-discovery[open] > summary::after {
   margin-bottom: 10px;
   font-weight: 600;
 }
+.info-card strong {
+  color: var(--color-accent);
+}
 .info-card p {
   line-height: 1.5;
 }
