@@ -926,6 +926,9 @@ details:not([open]) > .socratic-summary:hover::after {
 .avatar-callout-reflection {
   border-left: 10px solid var(--color-electric); /* --color-tertiary */
 }
+.avatar-callout-gold {
+  border-left: 10px solid var(--color-gold);
+}
 .avatar-image {
   width: 80px;
   height: 80px;
