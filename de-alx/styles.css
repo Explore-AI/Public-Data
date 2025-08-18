@@ -1259,6 +1259,21 @@ details.content-summary-discovery[open] > summary::after {
   background-size: contain;
   background-repeat: no-repeat;
 }
+.front.front-gold {
+  color: var(--color-gold);
+}
+.front.front-gold:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-gold);
+}
+.back.back-gold .bold-secondary {
+  color: var(--color-gold) !important;
+}
+.back.back-gold .custom-alx-list li::before {
+  background-image: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/alx-courses/aice/assets/Gold_X.png") !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
 /* Flip cards 2*/
 .flip-card-two-group {
