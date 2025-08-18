@@ -1039,6 +1039,13 @@ details:not([open]) > .socratic-summary:hover::after {
 .reflection-element-electric h {
   color: var(--color-primary) !important; /* electric heading */
 }
+.reflection-element-gold {
+  background-color: var(--color-gold-80) !important; /* light gold background */
+  border: 3px solid var(--color-gold) !important; /* gold border */
+}
+.reflection-element-gold h {
+  color: var(--color-primary) !important; /* gold heading */
+}
 
 /* Content summary */
 .content-summary-reflection {
