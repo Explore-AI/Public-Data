@@ -975,6 +975,9 @@ details:not([open]) > .socratic-summary:hover::after {
 .avatar-callout-two-right {
   border-right: 10px solid var(--color-tertiary); /* Accent on the right */
 }
+.avatar-callout-refelction-right {
+  border-right: 10px solid var(--color-electric);
+}
 
 /* Avatar conversation */
 .conversation {
@@ -1000,6 +1003,25 @@ details:not([open]) > .socratic-summary:hover::after {
     max-width: 100%;
   }
 }
+.conversation .avatar-callout-reflection,
+.conversation .avatar-callout-reflection-right {
+  width: 87%;
+  max-width: 87%;
+}
+.conversation .avatar-callout-reflection-right {
+  align-self: flex-end;
+}
+@media (max-width: 520px) {
+  .conversation .avatar-callout-reflection,
+  .conversation .avatar-callout-reflection-right {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+
+
 
 /* Prompting instructions */
 .callout-two {
