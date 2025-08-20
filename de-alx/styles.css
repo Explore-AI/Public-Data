@@ -977,6 +977,9 @@ details:not([open]) > .socratic-summary:hover::after {
 .avatar-callout-two-right {
   border-right: 10px solid var(--color-tertiary); /* Accent on the right */
 }
+.avatar-callout-refelction-right {
+  border-right: 10px solid var(--color-electric); 
+}
 
 /* Avatar conversation */
 .conversation {
