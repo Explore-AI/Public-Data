@@ -1028,6 +1028,12 @@ details:not([open]) > .socratic-summary:hover::after {
 .callout-electric h {
   color: var(--color-primary) !important;
 }
+.callout-gold::before {
+  background-color: var(--color-gold) !important;
+}
+.callout-gold h {
+  color: var(--color-primary) !important;
+}
 
 /* Refelection */
 .reflection-element-two {
