@@ -980,6 +980,9 @@ details:not([open]) > .socratic-summary:hover::after {
 .avatar-callout-refelction-right {
   border-right: 10px solid var(--color-electric); 
 }
+.avatar-callout-gold-right {
+  border-right: 10px solid var(--color-gold); 
+}
 
 /* Avatar conversation */
 .conversation {
