@@ -1168,57 +1168,90 @@ details.content-summary-discovery[open] > summary::after {
 }
 
 /* Tabs */
+.note {
+  color: #555;
+  margin: 0 0 24px;
+}
+
 .tabs {
   --tab-bg: #5648b7;
   --tab-text: #fff;
-  margin: 18px 0;
-  border-radius: 6px;
+  margin: 18px 0 32px;
+  border-radius: 8px;
+  background: var(--color-light-background);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  counter-reset: tabgroup;
 }
-.tabs--discovery {
+.tabs.tabs--discovery {
   --tab-bg: #028eca;
 }
-.tab-bar {
-  display: flex;
-  flex-wrap: nowrap;
+
+/* Tab labels row */
+.tabs .tablist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 6px;
+  align-items: stretch;
 }
-.tabs input[type="radio"] {
+.tab {
+  display: contents;
+  counter-increment: tabgroup;
+}
+.tab > input {
   display: none;
+  order: 0;
 }
-.tab-label {
-  flex: 1 1 0;
+
+.tab > label.tab-label {
   padding: 12px 14px;
   background: var(--tab-bg);
-  color: #fff;
+  color: var(--tab-text);
   font-weight: 600;
   text-align: center;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: filter 0.15s ease, background 0.2s ease, color 0.2s ease;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  user-select: none;
+  order: 1;
 }
-.tabs input[type="radio"]:checked + .tab-label {
-  background: var(--color-light-background, #e7e9ec);
+.tab > input:checked + label.tab-label {
+  background: var(--color-light-background);
   color: var(--tab-bg);
 }
-.tabs input[type="radio"]:not(:checked) + .tab-label:hover {
+.tab > input:not(:checked) + label.tab-label:hover {
   filter: brightness(1.05);
 }
-.tab-panels {
-  background: var(--color-light-background, #e7e9ec);
+
+/* Panels container: make sure it always sits full width below labels */
+.tabs .tab-panels {
+  width: 100%;
 }
+
 .tab-panel {
   display: none;
+  order: 2;
+  grid-column: 1 / -1;
+  background: var(--color-light-background);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
+.tab > input:checked ~ .tab-panel {
+  display: block;
+}
+
 .tab-panel-inner {
-  max-height: 380px;
+  max-height: 320px;
   overflow: auto;
   padding: 16px;
+  text-align: left;
 }
 .tab-footer {
   padding: 12px 16px;
-  background: var(--color-light-background, #e7e9ec);
+  background: var(--color-light-background);
   text-align: right;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 .tab-next {
   background: transparent;
@@ -1227,25 +1260,11 @@ details.content-summary-discovery[open] > summary::after {
   font-weight: 700;
   cursor: pointer;
 }
-.tabs:has(#train-tab1:checked) .train-panel1,
-.tabs:has(#train-tab2:checked) .train-panel2,
-.tabs:has(#train-tab3:checked) .train-panel3,
-.tabs:has(#train-tab4:checked) .train-panel4,
-.tabs:has(#disc-tab1:checked) .disc-panel1,
-.tabs:has(#disc-tab2:checked) .disc-panel2,
-.tabs:has(#disc-tab3:checked) .disc-panel3,
-.tabs:has(#disc-tab4:checked) .disc-panel4 {
-  display: block;
-}
-.tabs > input#train-tab1:checked ~ .tab-panels .train-panel1,
-.tabs > input#train-tab2:checked ~ .tab-panels .train-panel2,
-.tabs > input#train-tab3:checked ~ .tab-panels .train-panel3,
-.tabs > input#train-tab4:checked ~ .tab-panels .train-panel4,
-.tabs > input#disc-tab1:checked ~ .tab-panels .disc-panel1,
-.tabs > input#disc-tab2:checked ~ .tab-panels .disc-panel2,
-.tabs > input#disc-tab3:checked ~ .tab-panels .disc-panel3,
-.tabs > input#disc-tab4:checked ~ .tab-panels .disc-panel4 {
-  display: block;
+
+.divider {
+  height: 1px;
+  background: #d7dbe0;
+  margin: 32px 0;
 }
 
 /* Flip cards */
@@ -1539,6 +1558,31 @@ details.content-summary-discovery[open] > summary::after {
     background-color: var(--color-primary); color: var(--color-light); cursor: pointer; font-size: 0.9rem;
 }
 #train-checklist button:hover { background-color: var(--color-primary-hover); }
+#train-checklist button:hover {
+  background-color: var(--color-primary-hover);
+}
+#train-checklist.discovery-checklist > div:hover {
+  background-color: var(--color-tertiary-80);
+}
+
+#train-checklist.discovery-checklist input[type="checkbox"] {
+  accent-color: var(--color-tertiary);
+}
+
+#train-checklist.discovery-checklist label strong {
+  color: var(--color-tertiary);
+}
+
+#train-checklist.discovery-checklist button {
+  background-color: var(--color-tertiary);
+}
+
+#train-checklist.discovery-checklist button:hover {
+  background-color: var(--color-tertiary-hover);
+}
+#train-checklist.discovery-checklist #copy-status {
+  color: var(--color-tertiary);
+}
 #copy-status {
     display: inline-block;
     margin-left: 0.5rem;
