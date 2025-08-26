@@ -984,6 +984,14 @@ details:not([open]) > .socratic-summary:hover::after {
   border-right: 10px solid var(--color-gold); 
 }
 
+.avatar-callout-refelction-right {
+  border-right: 10px solid var(--color-electric);
+}
+
+.avatar-callout-gold-right {
+  border-right: 10px solid var(--color-gold);
+}
+
 /* Avatar conversation */
 .conversation {
   display: flex;
@@ -994,16 +1002,18 @@ details:not([open]) > .socratic-summary:hover::after {
   border-radius: 10px;
 }
 .conversation .avatar-callout-two,
-.conversation .avatar-callout-two-right {
+.conversation .avatar-callout-two-right,
+.conversation .avatar-callout-refelction-right,
+.conversation .avatar-callout-gold-right {
   width: 87%;
   max-width: 87%;
-}
-.conversation .avatar-callout-two-right {
   align-self: flex-end;
 }
 @media (max-width: 520px) {
   .conversation .avatar-callout-two,
-  .conversation .avatar-callout-two-right {
+  .conversation .avatar-callout-two-right,
+  .conversation .avatar-callout-refelction-right,
+  .conversation .avatar-callout-gold-right {
     width: 100%;
     max-width: 100%;
   }
