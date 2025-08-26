@@ -79,14 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------- Train checklist ----------
-  const container = document.getElementById("train-checklist");
-  if (!container) return; // checklist not on this page; exit quietly
+  document.addEventListener("DOMContentLoaded", () => {
+  // Get all checklists on the page
+  const checklists = document.querySelectorAll(".checklist[data-checklist]");
+  if (!checklists.length) return;
 
-  const copyBtn = document.getElementById("copy-checklist");
-  const clearBtn = document.getElementById("clear-checklist");
-  const copyStatus = document.getElementById("copy-status");
-
-  function generateMarkdown(rootEl = container) {
+  function generateMarkdown(rootEl) {
     const items = rootEl.querySelectorAll('input[type="checkbox"]');
     let out = "";
     items.forEach((cb) => {
@@ -129,9 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 0);
   }
 
-  async function handleCopy(e) {
-    e?.preventDefault?.();
-    const payload = generateMarkdown();
+  async function handleCopy(container, copyStatus) {
+    const payload = generateMarkdown(container);
     try {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(payload);
@@ -158,13 +155,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function handleClear(e) {
-    e?.preventDefault?.();
+  function handleClear(container) {
     container.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
       cb.checked = false;
     });
+    const copyStatus = container.querySelector(".checklist__status");
+    if (copyStatus) copyStatus.style.visibility = "hidden";
   }
 
-  if (copyBtn) copyBtn.addEventListener("click", handleCopy);
-  if (clearBtn) clearBtn.addEventListener("click", handleClear);
+  // Wire up each checklist separately
+  checklists.forEach((container) => {
+    const copyBtn = container.querySelector(".checklist__copy");
+    const clearBtn = container.querySelector(".checklist__clear");
+    const copyStatus = container.querySelector(".checklist__status");
+
+    if (copyBtn) {
+      copyBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        handleCopy(container, copyStatus);
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        handleClear(container);
+      });
+    }
+  });
 });
