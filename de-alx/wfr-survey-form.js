@@ -79,108 +79,95 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------- Train checklist ----------
-  document.addEventListener("DOMContentLoaded", () => {
-  // Get all checklists on the page
-  const checklists = document.querySelectorAll(".checklist[data-checklist]");
-  if (!checklists.length) return;
-
-  function generateMarkdown(rootEl) {
-    const items = rootEl.querySelectorAll('input[type="checkbox"]');
-    let out = "";
-    items.forEach((cb) => {
-      const label = rootEl.querySelector(`label[for="${cb.id}"]`);
-      const text = (label?.innerText || "").replace(/\s+/g, " ").trim();
-      const mark = cb.checked ? "x" : " ";
-      out += `- [${mark}] ${text}\n`;
-    });
-    return out;
-  }
-
-  function legacyCopy(text) {
-    try {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.setAttribute("readonly", "");
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      const ok = document.execCommand("copy");
-      document.body.removeChild(ta);
-      return ok;
-    } catch {
-      return false;
+  // Multi-checklist: event delegation, class/data-* selectors only
+  (function() {
+    function generateMarkdown(rootEl) {
+      const items = rootEl.querySelectorAll('.checklist__item input[type="checkbox"]');
+      let out = "";
+      items.forEach((cb) => {
+        const label = rootEl.querySelector(`label[for="${cb.id}"]`);
+        const text = (label?.innerText || "").replace(/\s+/g, " ").trim();
+        const mark = cb.checked ? "x" : " ";
+        out += `- [${mark}] ${text}\n`;
+      });
+      return out;
     }
-  }
-
-  function downloadText(filename, text) {
-    const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-      URL.revokeObjectURL(url);
-      a.remove();
-    }, 0);
-  }
-
-  async function handleCopy(container, copyStatus) {
-    const payload = generateMarkdown(container);
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(payload);
-        if (copyStatus) {
-          copyStatus.textContent = "✔ Copied";
-          copyStatus.style.visibility = "visible";
-        }
-        return;
+    function legacyCopy(text) {
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        return ok;
+      } catch {
+        return false;
       }
-      throw new Error("Clipboard API unavailable");
-    } catch {
-      if (legacyCopy(payload)) {
-        if (copyStatus) {
-          copyStatus.textContent = "✔ Copied";
-          copyStatus.style.visibility = "visible";
-        }
-        return;
-      }
-      downloadText("checklist.md", payload);
+    }
+    function downloadText(filename, text) {
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
+    }
+    function showStatus(container, msg) {
+      const copyStatus = container.querySelector(".checklist__status");
       if (copyStatus) {
-        copyStatus.textContent = "✔ Downloaded";
+        copyStatus.textContent = msg;
         copyStatus.style.visibility = "visible";
+        clearTimeout(copyStatus._t);
+        copyStatus._t = setTimeout(() => (copyStatus.style.visibility = "hidden"), 1500);
       }
     }
-  }
-
-  function handleClear(container) {
-    container.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
-      cb.checked = false;
+    async function doCopy(container) {
+      const payload = generateMarkdown(container);
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(payload);
+          showStatus(container, "✔ Copied");
+          return;
+        }
+        throw new Error("Clipboard API unavailable");
+      } catch {
+        if (legacyCopy(payload)) {
+          showStatus(container, "✔ Copied");
+          return;
+        }
+        downloadText("checklist.md", payload);
+        showStatus(container, "✔ Downloaded");
+      }
+    }
+    // Single delegated listener handles any number of checklists
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-action]");
+      if (!btn) return;
+      const container = btn.closest(".checklist[data-checklist]");
+      if (!container) return;
+      const action = btn.getAttribute("data-action");
+      if (action === "copy") {
+        e.preventDefault();
+        doCopy(container);
+      } else if (action === "clear") {
+        // allow native reset, then hide status
+        setTimeout(() => {
+          const status = container.querySelector(".checklist__status");
+          if (status) status.style.visibility = "hidden";
+        }, 0);
+      }
     });
-    const copyStatus = container.querySelector(".checklist__status");
-    if (copyStatus) copyStatus.style.visibility = "hidden";
-  }
-
-  // Wire up each checklist separately
-  checklists.forEach((container) => {
-    const copyBtn = container.querySelector(".checklist__copy");
-    const clearBtn = container.querySelector(".checklist__clear");
-    const copyStatus = container.querySelector(".checklist__status");
-
-    if (copyBtn) {
-      copyBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        handleCopy(container, copyStatus);
-      });
-    }
-
-    if (clearBtn) {
-      clearBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        handleClear(container);
-      });
-    }
-  });
-});
+    // Hide status when any form resets programmatically
+    document.addEventListener("reset", (e) => {
+      const container = e.target.closest(".checklist[data-checklist]");
+      if (!container) return;
+      const status = container.querySelector(".checklist__status");
+      if (status) status.style.visibility = "hidden";
+    });
+  })();
