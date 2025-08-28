@@ -143,9 +143,13 @@
     const status = container.querySelector(".checklist__status");
     if (status) status.style.visibility = "hidden";
   });
-  /*********************************************
- ****** Downloadable Worksheet - FIXED ******
+});
+
+/*********************************************
+ ****** Downloadable Worksheet - GLOBAL ******
  **********************************************/
+
+// MOVED OUTSIDE THE IIFE SO THEY'RE GLOBALLY ACCESSIBLE
 
 // Add new row to a table - IMPROVED VERSION
 function addRow(tableId) {
@@ -293,35 +297,6 @@ function clearTable(tableId) {
   }
 }
 
-// Alternative simpler clear function if the above doesn't work
-function clearTableSimple(tableId) {
-  const table = document.querySelector(`[data-table-id="${tableId}"]`);
-  if (!table) return;
-
-  // Just clear all inputs without removing rows
-  table.querySelectorAll("input, textarea, select").forEach((field) => {
-    if (field.tagName === "SELECT") {
-      field.selectedIndex = 0;
-    } else {
-      field.value = "";
-    }
-  });
-
-  // Remove extra rows, keeping only the first row with inputs
-  const tbody = table.querySelector("tbody");
-  if (tbody) {
-    const rows = Array.from(tbody.querySelectorAll("tr"));
-    const inputRows = rows.filter((row) => row.querySelector("input, textarea, select"));
-
-    // Remove all but the first input row
-    for (let i = 1; i < inputRows.length; i++) {
-      inputRows[i].remove();
-    }
-  }
-
-  showWorksheetStatus("✓ Table cleared!");
-}
-
 // Copy worksheet content to clipboard
 function copyWorksheet(button) {
   const worksheet = button.closest(".worksheet-container");
@@ -454,4 +429,3 @@ function enableAutoSave() {
 
 // Optional: Enable auto-save
 // enableAutoSave();
-});
