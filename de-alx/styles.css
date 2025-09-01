@@ -1005,16 +1005,12 @@ details:not([open]) > .socratic-summary:hover::after {
   padding: 24px;
   border-radius: 10px;
 }
-.conversation .avatar-callout-two,
 .conversation .avatar-callout-two-right,
 .conversation .avatar-callout-refelction-right,
 .conversation .avatar-callout-gold-right {
-  width: 87%;
-  max-width: 87%;
   align-self: flex-end;
 }
 @media (max-width: 520px) {
-  .conversation .avatar-callout-two,
   .conversation .avatar-callout-two-right,
   .conversation .avatar-callout-refelction-right,
   .conversation .avatar-callout-gold-right {
