@@ -149,231 +149,235 @@
  ********** Worksheet w/ Copy+Clear **********
  **********************************************/
 // Helpers
-function textify(n){ return (n && (n.textContent||'')).replace(/\s+/g,' ').trim(); }
-  function mdEscape(s){ return String(s||'').replace(/\|/g,'\\|').replace(/\r?\n/g,'<br>').trim(); }
+// ====== COMPLETE WORKING JS ======
+// Helpers
+function textify(n){ 
+  return (n && (n.textContent||'')).replace(/\s+/g,' ').trim(); 
+}
 
-  function getLabelFor(el){
-    const id = el.id && String(el.id);
-    const lab = id ? el.ownerDocument.querySelector('label[for="'+id+'"]') : null;
-    if(lab) return textify(lab);
-    if(el.getAttribute('aria-label')) return el.getAttribute('aria-label');
-    const prev = el.previousElementSibling; if(prev && prev.tagName==='LABEL') return textify(prev);
-    if(el.placeholder) return el.placeholder;
-    if(el.name) return el.name;
-    return 'Field';
-  }
+function mdEscape(s){ 
+  return String(s||'').replace(/\|/g,'\\|').replace(/\r?\n/g,'<br>').trim(); 
+}
 
-  // Collect non-table fields first
-  function gatherFieldsMD(ws){
-    const all = Array.from(ws.querySelectorAll('input, textarea, select'))
-      .filter(el => !el.closest('table.worksheet-table'));
-    const seenRadio = new Set();
-    const lines = [];
-    for(const el of all){
-      const tag = el.tagName.toLowerCase();
-      const type = tag==='input' ? (el.type||'text').toLowerCase() : tag;
-      if(type==='radio'){
-        if(seenRadio.has(el.name)) continue;
-        seenRadio.add(el.name);
-        const checked = ws.querySelector('input[type="radio"][name="'+CSS.escape(el.name)+'"]:checked');
-        const value = checked ? (checked.value || textify(checked.closest('label'))) : '';
-        const label = getLabelFor(el) || el.name || 'Choice';
-        lines.push(`- [x] ${label}: ${value || '—'}`);
-        continue;
-      }
-      if(type==='checkbox'){
-        const label = getLabelFor(el);
-        lines.push(`- [x] ${label}: ${el.checked ? 'Yes' : 'No'}`);
-        continue;
-      }
-      const label = getLabelFor(el);
-      let value = '';
-      if(tag==='select'){
-        value = Array.from(el.selectedOptions||[]).map(o=>textify(o)).join(', ');
-      } else {
-        value = (el.value||'').trim();
-      }
+function getLabelFor(el){
+  const id = el.id && String(el.id);
+  const lab = id ? el.ownerDocument.querySelector('label[for="'+id+'"]') : null;
+  if(lab) return textify(lab);
+  if(el.getAttribute('aria-label')) return el.getAttribute('aria-label');
+  const prev = el.previousElementSibling; if(prev && prev.tagName==='LABEL') return textify(prev);
+  if(el.placeholder) return el.placeholder;
+  if(el.name) return el.name;
+  return 'Field';
+}
+
+// Collect non-table fields first
+function gatherFieldsMD(ws){
+  const all = Array.from(ws.querySelectorAll('input, textarea, select'))
+    .filter(el => !el.closest('table.worksheet-table'));
+  const seenRadio = new Set();
+  const lines = [];
+  for(const el of all){
+    const tag = el.tagName.toLowerCase();
+    const type = tag==='input' ? (el.type||'text').toLowerCase() : tag;
+    if(type==='radio'){
+      if(seenRadio.has(el.name)) continue;
+      seenRadio.add(el.name);
+      const checked = ws.querySelector('input[type="radio"][name="'+CSS.escape(el.name)+'"]:checked');
+      const value = checked ? (checked.value || textify(checked.closest('label'))) : '';
+      const label = getLabelFor(el) || el.name || 'Choice';
       lines.push(`- [x] ${label}: ${value || '—'}`);
+      continue;
     }
-    return lines.join('\n');
-  }
-
-  function getCellValue(td){
-    // Prefer form control values if present; else fallback to text
-    const ctrls = td.querySelectorAll('input, textarea, select');
-    if (ctrls.length){
-      // Radios: only include checked
-      const checkedRadios = td.querySelectorAll('input[type="radio"]:checked');
-      if (checkedRadios.length){
-        return Array.from(checkedRadios).map(el => (el.value || '').trim()).filter(Boolean).join(', ');
-      }
-      // Checkboxes: include values of checked; if none checked and only one exists, mark No
-      const checkboxes = td.querySelectorAll('input[type="checkbox"]');
-      if (checkboxes.length){
-        const picked = Array.from(checkboxes).filter(cb => cb.checked).map(cb => (cb.value || 'Yes'));
-        return picked.length ? picked.join(', ') : (checkboxes.length === 1 ? 'No' : '');
-      }
-      // Select(s), textarea, text-like inputs
-      const vals = Array.from(ctrls).map(el => {
-        const tag = el.tagName.toLowerCase();
-        if (tag === 'select'){
-          const opts = Array.from(el.selectedOptions || []);
-          return opts.map(o => (o.textContent || '').trim()).join(', ');
-        }
-        if (tag === 'textarea') return (el.value || '').trim();
-        if (tag === 'input'){
-          const t = (el.type || 'text').toLowerCase();
-          if (t === 'number' && el.value !== '') return String(el.value);
-          return (el.value || '').trim();
-        }
-        return '';
-      }).filter(Boolean);
-      return vals.join(', ');
+    if(type==='checkbox'){
+      const label = getLabelFor(el);
+      lines.push(`- [x] ${label}: ${el.checked ? 'Yes' : 'No'}`);
+      continue;
     }
-    // contenteditable or plain text
-    if (td.hasAttribute('contenteditable')) return textify(td);
-    return textify(td);
-  }
-
-  function tableToMarkdown(table){
-    const ths = Array.from(table.querySelectorAll('thead th')).map(th=>textify(th));
-    const rows = Array.from(table.querySelectorAll('tbody tr')).map(tr =>
-      Array.from(tr.cells).map(td => mdEscape(getCellValue(td)))
-    );
-    // Build markdown with explicit 
- escapes (no raw newlines in strings)
-    let out  = '| ' + ths.join(' | ') + ' |' + '
-';
-        out += '| ' + ths.map(()=> '---').join(' | ') + ' |' + '
-';
-    if(rows.length===0){
-      out += '| ' + ths.map(()=> ' ').join(' | ') + ' |' + '
-';
+    const label = getLabelFor(el);
+    let value = '';
+    if(tag==='select'){
+      value = Array.from(el.selectedOptions||[]).map(o=>textify(o)).join(', ');
     } else {
-      rows.forEach(r=>{ out += '| ' + r.join(' | ') + ' |' + '
-'; });
+      value = (el.value||'').trim();
     }
-    return out;
+    lines.push(`- [x] ${label}: ${value || '—'}`);
   }
-function worksheetToMarkdown(ws){
-    const title = ws.querySelector('.worksheet-header h2') ? textify(ws.querySelector('.worksheet-header h2')) : 'Worksheet';
-    const subtitle = ws.querySelector('.worksheet-description') ? textify(ws.querySelector('.worksheet-description')) : '';
-    let md = `## ${title}\n`;
-    if(subtitle) md += `*${subtitle}*\n\n`;
-    const fields = gatherFieldsMD(ws);
-    if(fields) md += fields + '\n\n';
-    const tables = ws.querySelectorAll('table.worksheet-table');
-    tables.forEach((tbl, i) => {
-      const wrap = tbl.closest('[data-table]');
-      const tTitle = wrap && wrap.querySelector('.section-title') ? textify(wrap.querySelector('.section-title')) : `Table ${i+1}`;
-      md += `### ${tTitle}\n`;
-      md += tableToMarkdown(tbl) + '\n';
-    });
-    return md.trim();
-  }
+  return lines.join('\n');
+}
 
-  // Robust copy (handles blocked Clipboard API via fallback)
-  function legacyCopy(text){
-    try{
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly','');
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      const ok = document.execCommand('copy');
-      document.body.removeChild(ta);
-      return ok;
-    }catch{ return false; }
-  }
-
-  async function copyWorksheet(ws){
-    const status = ws.querySelector('.worksheet-status');
-    const md = worksheetToMarkdown(ws);
-
-    let copied = false;
-    if(navigator.clipboard && window.isSecureContext && navigator.clipboard.writeText){
-      try{ await navigator.clipboard.writeText(md); copied = true; }
-      catch(err){ copied = false; console.warn('Clipboard API failed:', err && err.name); }
+function getCellValue(td){
+  // Prefer form control values if present; else fallback to text
+  const ctrls = td.querySelectorAll('input, textarea, select');
+  if (ctrls.length){
+    // Radios: only include checked
+    const checkedRadios = td.querySelectorAll('input[type="radio"]:checked');
+    if (checkedRadios.length){
+      return Array.from(checkedRadios).map(el => (el.value || '').trim()).filter(Boolean).join(', ');
     }
-    if(!copied){
-      copied = legacyCopy(md);
+    // Checkboxes: include values of checked; if none checked and only one exists, mark No
+    const checkboxes = td.querySelectorAll('input[type="checkbox"]');
+    if (checkboxes.length){
+      const picked = Array.from(checkboxes).filter(cb => cb.checked).map(cb => (cb.value || 'Yes'));
+      return picked.length ? picked.join(', ') : (checkboxes.length === 1 ? 'No' : '');
     }
-
-    if(status){
-      status.style.display = 'inline-block';
-      status.textContent = copied ? '✔ Copied' : '✖ Copy blocked by browser';
-      clearTimeout(status._t);
-      status._t = setTimeout(()=>{ status.style.display = 'none'; }, 1400);
-    }
-  }
-
-  function addRow(tableWrap){
-    const table = tableWrap.querySelector('table.worksheet-table'); if(!table) return;
-    const tbody = table.querySelector('tbody');
-    const proto = tbody.querySelector('tr');
-    let tr;
-    if (proto){
-      // Clone existing structure (supports inputs/selects/textareas)
-      tr = proto.cloneNode(true);
-      tr.querySelectorAll('input, textarea').forEach(el => {
+    // Select(s), textarea, text-like inputs
+    const vals = Array.from(ctrls).map(el => {
+      const tag = el.tagName.toLowerCase();
+      if (tag === 'select'){
+        const opts = Array.from(el.selectedOptions || []);
+        return opts.map(o => (o.textContent || '').trim()).join(', ');
+      }
+      if (tag === 'textarea') return (el.value || '').trim();
+      if (tag === 'input'){
         const t = (el.type || 'text').toLowerCase();
-        if (t === 'checkbox' || t === 'radio') el.checked = false; else el.value = '';
-      });
-      tr.querySelectorAll('select').forEach(sel => { sel.selectedIndex = 0; });
-      tr.querySelectorAll('[contenteditable]').forEach(el => { el.textContent = ''; });
-    } else {
-      // No prototype row: create contenteditable cells from header count
-      tr = document.createElement('tr');
-      const ths = table.querySelectorAll('thead th');
-      ths.forEach(th => {
-        const td = document.createElement('td');
-        td.setAttribute('contenteditable','true');
-        td.setAttribute('role','textbox');
-        td.setAttribute('aria-label', textify(th));
-        tr.appendChild(td);
-      });
-    }
-    tbody.appendChild(tr);
-    const focusable = tr.querySelector('input, textarea, select, td[contenteditable]');
-    if (focusable) focusable.focus();
+        if (t === 'number' && el.value !== '') return String(el.value);
+        return (el.value || '').trim();
+      }
+      return '';
+    }).filter(Boolean);
+    return vals.join(', ');
   }
-function clearWorksheet(ws){
-    if(typeof ws.reset === 'function') ws.reset();
-    ws.querySelectorAll('table.worksheet-table td[contenteditable]')
-      .forEach(td=> td.textContent='');
+  // contenteditable or plain text
+  if (td.hasAttribute('contenteditable')) return textify(td);
+  return textify(td);
+}
+
+function tableToMarkdown(table){
+  const ths = Array.from(table.querySelectorAll('thead th')).map(th=>textify(th));
+  const rows = Array.from(table.querySelectorAll('tbody tr')).map(tr =>
+    Array.from(tr.cells).map(td => mdEscape(getCellValue(td)))
+  );
+  // Build markdown with explicit newlines (no raw newlines in strings)
+  let out  = '| ' + ths.join(' | ') + ' |' + '\n';
+      out += '| ' + ths.map(()=> '---').join(' | ') + ' |' + '\n';
+  if(rows.length===0){
+    out += '| ' + ths.map(()=> ' ').join(' | ') + ' |' + '\n';
+  } else {
+    rows.forEach(r=>{ out += '| ' + r.join(' | ') + ' |' + '\n'; });
   }
+  return out;
+}
 
-  // Delegation (multi‑worksheet)
-  document.addEventListener('click', (e)=>{
-    const btn = e.target.closest('[data-action]');
-    if(!btn) return;
-    const ws = btn.closest('[data-worksheet]');
-    const tableWrap = btn.closest('[data-table]');
-    const action = btn.getAttribute('data-action');
-
-    if(action==='add-row' && tableWrap){ e.preventDefault(); addRow(tableWrap); return; }
-    if(action==='copy-worksheet' && ws){ e.preventDefault(); copyWorksheet(ws); return; }
-    if(action==='clear-worksheet' && ws){ e.preventDefault(); clearWorksheet(ws); return; }
+function worksheetToMarkdown(ws){
+  const title = ws.querySelector('.worksheet-header h2') ? textify(ws.querySelector('.worksheet-header h2')) : 'Worksheet';
+  const subtitle = ws.querySelector('.worksheet-description') ? textify(ws.querySelector('.worksheet-description')) : '';
+  let md = `## ${title}\n`;
+  if(subtitle) md += `*${subtitle}*\n\n`;
+  const fields = gatherFieldsMD(ws);
+  if(fields) md += fields + '\n\n';
+  const tables = ws.querySelectorAll('table.worksheet-table');
+  tables.forEach((tbl, i) => {
+    const wrap = tbl.closest('[data-table]');
+    const tTitle = wrap && wrap.querySelector('.section-title') ? textify(wrap.querySelector('.section-title')) : `Table ${i+1}`;
+    md += `### ${tTitle}\n`;
+    md += tableToMarkdown(tbl) + '\n';
   });
+  return md.trim();
+}
 
-  // === Minimal non-UI tests (run from console) ===
-  // window.__worksheetTests.copyFirst() -> Promise<boolean>
-  // window.__worksheetTests.legacyCopy() -> boolean
-  // window.__worksheetTests.canUseClipboardAPI() -> boolean
-  window.__worksheetTests = {
-    async copyFirst(){
-      const ws = document.querySelector('[data-worksheet]');
-      if(!ws) return false;
-      try{ await copyWorksheet(ws); return true; }catch{ return false; }
-    },
-    legacyCopy(){ return legacyCopy('test '+Date.now()); },
-    canUseClipboardAPI(){ return !!(navigator.clipboard && window.isSecureContext && navigator.clipboard.writeText); },
-    // New quick check to validate table markdown generation without errors
-    tableMD(){
-      const tbl = document.querySelector('table.worksheet-table');
-      if(!tbl) return '';
-      return tableToMarkdown(tbl);
-    }
-  };
+// Robust copy (handles blocked Clipboard API via fallback)
+function legacyCopy(text){
+  try{
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly','');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  }catch{ return false; }
+}
+
+async function copyWorksheet(ws){
+  const status = ws.querySelector('.worksheet-status');
+  const md = worksheetToMarkdown(ws);
+
+  let copied = false;
+  if(navigator.clipboard && window.isSecureContext && navigator.clipboard.writeText){
+    try{ await navigator.clipboard.writeText(md); copied = true; }
+    catch(err){ copied = false; console.warn('Clipboard API failed:', err && err.name); }
+  }
+  if(!copied){
+    copied = legacyCopy(md);
+  }
+
+  if(status){
+    status.style.display = 'inline-block';
+    status.textContent = copied ? '✔ Copied' : '✖ Copy blocked by browser';
+    clearTimeout(status._t);
+    status._t = setTimeout(()=>{ status.style.display = 'none'; }, 1400);
+  }
+}
+
+function addRow(tableWrap){
+  const table = tableWrap.querySelector('table.worksheet-table'); if(!table) return;
+  const tbody = table.querySelector('tbody');
+  const proto = tbody.querySelector('tr');
+  let tr;
+  if (proto){
+    // Clone existing structure (supports inputs/selects/textareas)
+    tr = proto.cloneNode(true);
+    tr.querySelectorAll('input, textarea').forEach(el => {
+      const t = (el.type || 'text').toLowerCase();
+      if (t === 'checkbox' || t === 'radio') el.checked = false; else el.value = '';
+    });
+    tr.querySelectorAll('select').forEach(sel => { sel.selectedIndex = 0; });
+    tr.querySelectorAll('[contenteditable]').forEach(el => { el.textContent = ''; });
+  } else {
+    // No prototype row: create contenteditable cells from header count
+    tr = document.createElement('tr');
+    const ths = table.querySelectorAll('thead th');
+    ths.forEach(th => {
+      const td = document.createElement('td');
+      td.setAttribute('contenteditable','true');
+      td.setAttribute('role','textbox');
+      td.setAttribute('aria-label', textify(th));
+      tr.appendChild(td);
+    });
+  }
+  tbody.appendChild(tr);
+  const focusable = tr.querySelector('input, textarea, select, td[contenteditable]');
+  if (focusable) focusable.focus();
+}
+
+function clearWorksheet(ws){
+  if(typeof ws.reset === 'function') ws.reset();
+  ws.querySelectorAll('table.worksheet-table td[contenteditable]')
+    .forEach(td=> td.textContent='');
+}
+
+// Delegation (multi‑worksheet)
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-action]');
+  if(!btn) return;
+  const ws = btn.closest('[data-worksheet]');
+  const tableWrap = btn.closest('[data-table]');
+  const action = btn.getAttribute('data-action');
+
+  if(action==='add-row' && tableWrap){ e.preventDefault(); addRow(tableWrap); return; }
+  if(action==='copy-worksheet' && ws){ e.preventDefault(); copyWorksheet(ws); return; }
+  if(action==='clear-worksheet' && ws){ e.preventDefault(); clearWorksheet(ws); return; }
+});
+
+// === Minimal non-UI tests (run from console) ===
+// window.__worksheetTests.copyFirst() -> Promise<boolean>
+// window.__worksheetTests.legacyCopy() -> boolean
+// window.__worksheetTests.canUseClipboardAPI() -> boolean
+window.__worksheetTests = {
+  async copyFirst(){
+    const ws = document.querySelector('[data-worksheet]');
+    if(!ws) return false;
+    try{ await copyWorksheet(ws); return true; }catch{ return false; }
+  },
+  legacyCopy(){ return legacyCopy('test '+Date.now()); },
+  canUseClipboardAPI(){ return !!(navigator.clipboard && window.isSecureContext && navigator.clipboard.writeText); },
+  // New quick check to validate table markdown generation without errors
+  tableMD(){
+    const tbl = document.querySelector('table.worksheet-table');
+    if(!tbl) return '';
+    return tableToMarkdown(tbl);
+  }
+};
