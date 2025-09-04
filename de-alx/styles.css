@@ -948,6 +948,12 @@ details:not([open]) > .socratic-summary:hover::after {
   flex: 1;
   line-height: 1.5;
 }
+.avatar-callout-reflection-right {
+  border-right: 10px solid var(--color-electric);
+}
+.avatar-callout-gold-right {
+  border-right: 10px solid var(--color-gold);
+}
 
 /* Consultant message right */
 .avatar-callout-right {
@@ -1198,6 +1204,12 @@ details.content-summary-discovery[open] > summary::after {
 .tabs.tabs--discovery {
   --tab-bg: #028eca;
 }
+.tabs.tabs--electric {
+  --tab-bg: var(--color-electric);
+}
+.tabs.tabs--gold {
+  --tab-bg: var(--color-gold);
+}
 
 /* Tab labels row */
 .tabs .tablist {
@@ -1317,6 +1329,21 @@ details.content-summary-discovery[open] > summary::after {
   background-size: contain;
   background-repeat: no-repeat;
 }
+.front.front-electric {
+  color: var(--color-electric);
+}
+.front.front-electric:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-electric);
+}
+.back.back-electric .bold-secondary {
+  color: var(--color-electric) !important;
+}
+.back.back-electric .custom-alx-list li::before {
+  background-image: var(--electric-logo-icon) !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
 /* Flip cards 2*/
 .flip-card-two-group {
@@ -1394,6 +1421,20 @@ details.content-summary-discovery[open] > summary::after {
 .flip-card-two-group-discovery .flip-card-two-back {
   background-color: var(--color-primary);
   color: var(--color-light);
+}
+.flip-card-two-group-electric .flip-card-two-front {
+  background-color: var(--color-primary);
+  color: var(--color-electric);
+}
+.flip-card-two-group-electric .flip-card-two-back {
+  background-color: var(--color-electric-80);
+  color: var(--color-primary);
+}
+.flip-card-two-group-gold .flip-card-two-front {
+  color: var(--color-gold);
+}
+.flip-card-two-group-gold .flip-card-two-back {
+  color: var(--color-gold);
 }
 
 /* Info cards*/
@@ -2061,3 +2102,65 @@ text:hover {
   display: block;
   opacity: 1;
 }
+
+.expandable-table-discovery thead {
+  background-color: var(--color-tertiary);
+}
+.expandable-table-reflection thead {
+  color: var(--color-electric);
+}
+.expandable-table-gold thead {
+  color: var(--color-gold);
+}
+
+/*******************************
+******** Socratic Avatar********
+********************************/
+.socratic-summary-callout {
+  color: var(--color-light);
+}
+.socratic-summary-callout::before {
+  content: "";
+  width: 80px;
+  height: 80px;
+  margin-right: 15px;
+  background-image: var(--socratic-img);
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+}
+.socratic-summary-callout:hover,
+.socratic-summary-callout-reflection:hover,
+.socratic-summary-callout-gold:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.socratic-summary-callout-two:hover {
+  background-color: var(--color-tertiary-hover);
+}
+.socratic-summary-callout-two,
+.socratic-summary-callout-two {
+  color: var(--color-light);
+  background-color: var(--color-tertiary);
+}
+.socratic-summary-callout-two::before {
+  border: 2px solid currentColor;
+}
+.socratic-summary-callout-reflection {
+  color: var(--color-electric);
+}
+.socratic-summary-callout-reflection::before {
+  border: 2px solid currentColor;
+}
+.socratic-summary-callout-gold {
+  color: var(--color-gold);
+}
+.socratic-summary-callout-gold::before {
+  border: 2px solid currentColor;
+}
+
+
+
