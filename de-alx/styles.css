@@ -2162,5 +2162,231 @@ text:hover {
   border: 2px solid currentColor;
 }
 
-
+/* Popups */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--popup-backdrop);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;
+}
+.popup-overlay:target {
+  display: flex;
+}
+.popup-panel {
+  background: var(--popup-bg);
+  color: var(--popup-text);
+  border: var(--popup-border);
+  border-radius: var(--popup-radius);
+  box-shadow: var(--popup-shadow);
+  width: min(90vw, 900px);
+  max-height: 90vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+}
+.popup-panel.size-60 {
+  width: 60vw;
+  max-width: 60vw;
+}
+.popup-panel.size-full {
+  width: 98vw;
+  max-width: 98vw;
+  border-radius: 0;
+}
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--popup-header-bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.popup-title {
+  margin: 0;
+  font: 600 16px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+.popup-close-button a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border: 0;
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: #f2f2f2;
+}
+.popup-close-button a:hover {
+  background: #e8e8e8;
+}
+.popup-body {
+  padding: 16px;
+  overflow: hidden;
+}
+.estimated-time {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  background: #fff;
+}
+.estimated-time h3 {
+  margin: 0 0 8px;
+  font: 600 20px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+.icon-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px;
+  display: inline-block;
+  background: var(--icon-url) center/90% no-repeat;
+}
+.icon-circle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+.icon-circle-train {
+  background-color: var(--color-primary);
+}
+.icon-video-white {
+  --icon-url: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Icons/video_icon_white.jpg");
+}
+.icon-case-study-white {
+  --icon-url: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Icons/case_study_icon_white.jpg");
+}
+.icon-example-white {
+  --icon-url: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Icons/example_icon_white.jpg");
+}
+.icon-excersise-white {
+  --icon-url: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Icons/excersise_icon_white.jpg");
+}
+.icon-investigate-white {
+  --icon-url: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Icons/investigate_icon_white.jpg");
+}
+.icon-lesson-info-white {
+  --icon-url: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Icons/lesson_info_icon_white.jpg");
+}
+.icon-mcq-white {
+  --icon-url: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Icons/mcq_icon_white.jpg");
+}
+.icon-prompt-white {
+  --icon-url: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Icons/prompt_icon_white.jpg");
+}
+.icon-self-white {
+  --icon-url: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Icons/self_icon_white.jpg");
+}
+.icon-walkthrough-white {
+  --icon-url: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Icons/walkthrough_icon_white.jpg");
+}
+/* Button */
+.btn-train {
+  background: var(--color-primary);
+  color: var(--color-light);
+  border-radius: 12px;
+  cursor: pointer;
+  width: 210px;
+  height: 50px;
+  will-change: transform;
+  transition: transform 0.2s ease-in-out;
+  font-family: var(--font-family);
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 0 16px;
+  text-align: left;
+  outline: none;
+  border: none;
+  line-height: 1;
+}
+.btn-train:hover {
+  transform: scale(1.1);
+}
+.lesson-info-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 24px;
+}
+.lesson-info-button {
+  overflow: visible;
+}
+.extra-info-button {
+  display: block;
+  text-align: center;
+  justify-content: center;
+}
+.preview-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.preview-wrap {
+  position: relative;
+  display: inline-block;
+}
+.preview-link {
+  color: #0b5bd3;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.preview-flyout {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 8px;
+  width: 420px;
+  max-width: 80vw;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: var(--popup-shadow);
+  overflow: hidden;
+  display: none;
+  z-index: 10050;
+}
+.preview-wrap:hover .preview-flyout {
+  display: block;
+}
+.preview-flyout-header {
+  font: 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+.preview-card {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 12px;
+  padding: 12px;
+}
+.preview-favicon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: radial-gradient(circle at 30% 20%, #e8f1ff, #cfe3ff);
+  display: grid;
+  place-items: center;
+  font: 700 18px system-ui;
+  color: #0b5bd3;
+}
+.preview-title {
+  margin: 0 0 4px;
+  font: 600 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #101010;
+}
+.preview-desc {
+  margin: 0;
+  font: 12px/1.4 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #4a4a4a;
+}
 
