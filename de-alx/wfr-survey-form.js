@@ -381,3 +381,97 @@ window.__worksheetTests = {
     return tableToMarkdown(tbl);
   }
 };
+
+/* =============================================
+     POPUP ELEMENT (HTML + minimal JS)
+     ============================================= */
+class PopupDialog extends HTMLElement {
+  constructor() {
+    super();
+    this.overlay = document.createElement("div");
+    this.overlay.className = "popup-overlay";
+    this.overlay.setAttribute("aria-hidden", "true");
+    this.panel = document.createElement("div");
+    this.panel.className = "popup-panel";
+    const header = document.createElement("div");
+    header.className = "popup-header";
+    this.titleEl = document.createElement("h2");
+    this.titleEl.className = "popup-title";
+    this.titleEl.textContent = "Popup";
+    const closeButton = document.createElement("button");
+    closeButton.className = "popup-close-button";
+    closeButton.textContent = "Close";
+    closeButton.addEventListener("click", () => this.close());
+    header.append(this.titleEl, closeButton);
+    this.body = document.createElement("div");
+    this.body.className = "popup-body";
+    this.panel.append(header, this.body);
+    this.overlay.append(this.panel);
+    document.body.append(this.overlay);
+    this.overlay.addEventListener("click", (e) => {
+      if (e.target === this.overlay) this.close();
+    });
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") this.close();
+    });
+  }
+  open(options = {}) {
+    const { title = "Popup", width, fullWidth = false, scrollable = false, html = "", node = null } = options;
+    this.titleEl.textContent = title;
+    if (fullWidth) this.panel.style.width = "100vw";
+    else if (width) this.panel.style.width = width;
+    else this.panel.style.width = "min(90vw, 900px)";
+    this.body.classList.toggle("scrollable", !!scrollable);
+    this.body.innerHTML = "";
+    if (node) this.body.append(node);
+    else if (html) this.body.innerHTML = html;
+    this.overlay.setAttribute("aria-hidden", "false");
+  }
+  close() {
+    this.overlay.setAttribute("aria-hidden", "true");
+  }
+}
+customElements.define("popup-dialog", PopupDialog);
+document.getElementById("lesson-info-trigger").addEventListener("click", () => {
+  const tpl = document.getElementById("estimated-time-template");
+  const section = tpl.content.cloneNode(true);
+  document.getElementById("demo-popup").open({ title: "Lesson Info", html: "", node: section, scrollable: false, width: "min(90vw, 720px)" });
+});
+(function setupHoverOnlySeoPreview() {
+  const wrap = document.getElementById("seo-preview");
+  const link = wrap.querySelector(".preview-link");
+  const hostEl = wrap.querySelector("#preview-hostname");
+  const titleEl = wrap.querySelector("#preview-title");
+  const descEl = wrap.querySelector("#preview-desc");
+  const favicon = wrap.querySelector("#preview-favicon");
+  let initialized = false;
+  function deriveTitleFromUrl(url) {
+    try {
+      const u = new URL(url);
+      return decodeURIComponent(u.pathname.split("/").filter(Boolean).pop() || u.hostname)
+        .replace(/[-_]+/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase());
+    } catch {
+      return "Preview";
+    }
+  }
+  function hydrate() {
+    if (initialized) return;
+    const url = link.getAttribute("data-preview-url");
+    try {
+      hostEl.textContent = "Preview: " + new URL(url).hostname;
+    } catch {
+      hostEl.textContent = "Preview";
+    }
+    titleEl.textContent = link.getAttribute("data-preview-title") || deriveTitleFromUrl(url);
+    descEl.textContent = link.getAttribute("data-preview-description") || "Static preview. Provide data-preview-description to customize.";
+    try {
+      favicon.textContent = new URL(url).hostname[0].toUpperCase();
+    } catch {
+      favicon.textContent = "🌐";
+    }
+    initialized = true;
+  }
+  wrap.addEventListener("mouseenter", hydrate, { once: true });
+})();
+
