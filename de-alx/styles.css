@@ -1,9 +1,8 @@
 /* Brand */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("./fontawesome/scss/fontawesome.scss");
-@import url("./fontawesome/scss/solid.scss");
-@import url("./fontawesome/scss/brands.scss");
+/* Replace SCSS imports (404 in browser) with compiled Font Awesome CSS */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
 
 :root {
   --color-light: #ffffff;
@@ -1333,11 +1332,7 @@ text:hover {
   padding: 24px;
   border-radius: 10px;
 }
-.conversation .avatar-callout-two-right,
-.conversation .avatar-callout-reflection-right,
-.conversation .avatar-callout-gold-right {
-  align-self: flex-end;
-}
+
 @media (max-width: 520px) {
   .conversation .avatar-callout-two-right,
   .conversation .avatar-callout-reflection-right,
@@ -1739,9 +1734,6 @@ details.content-summary-discovery[open] > summary::after {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   color: var(--color-primary);
   font-family: var(--font-family);
-  width: 80%; /* Full width for standalone stacking */
-  max-width: 400px; /* Limits width on larger screens for better readability */
-  margin: 20px auto; /* Centers the card and adds vertical spacing */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1766,8 +1758,8 @@ details.content-summary-discovery[open] > summary::after {
 }
 
 .info-card img {
-  max-width: 100%;
-  height: auto;
+  width: 80px;
+  height: 80px;
   border-radius: 50%; /* Circular for modern look */
   margin-bottom: 15px;
   object-fit: cover; /* Ensures image fits well */
@@ -2778,6 +2770,248 @@ input[type="text"] {
   border: 1px solid #eee;
   border-radius: 2px;
   font-size: 12px;
+}
+.atlas-delete-btn {
+  padding: 2px 6px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 11px;
+  cursor: pointer;
+  margin-left: 5px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.atlas-content-item:hover .atlas-delete-btn {
+  opacity: 1;
+}
+
+.atlas-delete-btn:hover {
+  background: #c0392b;
+}
+
+.atlas-export-button.danger:hover {
+  background: #c0392b !important;
+}
+
+.atlas-clear-confirm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  max-width: 400px;
+}
+
+.atlas-clear-confirm h3 {
+  margin-top: 0;
+  color: #e74c3c;
+}
+
+.atlas-clear-confirm-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.atlas-clear-confirm-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.atlas-clear-confirm-buttons .confirm {
+  background: #e74c3c;
+  color: white;
+}
+
+.atlas-clear-confirm-buttons .cancel {
+  background: #95a5a6;
+  color: white;
+}
+
+/* Full Worksheet Content Display Styles */
+.atlas-worksheet-full-content {
+  margin-top: 10px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #3498db;
+}
+
+.atlas-worksheet-content {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.atlas-worksheet-section {
+  margin-bottom: 20px;
+}
+
+.atlas-worksheet-section h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.atlas-worksheet-prompt pre {
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.atlas-worksheet-keyvalue {
+  display: grid;
+  gap: 8px;
+}
+
+.atlas-worksheet-pair {
+  padding: 8px;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.atlas-worksheet-key {
+  color: #34495e;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: capitalize;
+  min-width: fit-content;
+  flex-shrink: 0;
+}
+
+.atlas-worksheet-value {
+  color: #2c3e50;
+  word-wrap: break-word;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Prompt clear button theme */
+.prompt-clear-btn {
+  background: var(--color-primary);
+}
+.prompt-clear-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+/* Quadrant Map Full Content Display Styles */
+.atlas-quadrant-full-content {
+  margin-top: 10px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #3498db;
+}
+
+.atlas-quadrant-content {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.atlas-quadrant-section {
+  margin-bottom: 20px;
+}
+
+.atlas-quadrant-section h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.atlas-quadrant-keyvalue {
+  display: grid;
+  gap: 12px;
+}
+
+.atlas-quadrant-item {
+  padding: 10px;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.atlas-quadrant-key {
+  color: #3498db;
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 8px;
+  text-transform: capitalize;
+}
+
+.atlas-quadrant-tasks {
+  margin-left: 10px;
+}
+
+.atlas-quadrant-task-display {
+  color: #2c3e50;
+  padding: 4px 0;
+  line-height: 1.4;
+}
+
+/* Floating save button on top-right of quadrant grid */
+.map-quadrant-canvas-wrapper {
+  position: relative;
+}
+
+#map-quadrant-save-btn {
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  z-index: 1000;
+}
+
+/* Task delete button styling */
+.map-quadrant-delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.map-quadrant-delete-btn:hover {
+  opacity: 1;
+  background: #c0392b;
+}
+
+.map-quadrant-task {
+  position: relative;
 }
 /*****************************
 ***** Drag-and-drop **********
@@ -4153,48 +4387,6 @@ input[type="text"] {
   border-bottom-color: #004499;
 }
 
-/* Avatar image styles with CSS custom properties */
-.avatar-image-jordan {
-  --avatar-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/master/workforce-resilience/Jordan%20-%20character/Jordan-avatar.png");
-}
-
-.avatar-image-luminapath {
-  --avatar-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/LuminaPath/LuminaPath_logo.png");
-}
-
-.avatar-image-aisha {
-  --avatar-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/master/workforce-resilience/Aisha-character/Course-2-Aisha-Consultant.png");
-}
-
-.avatar-image-alex {
-  --avatar-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Alex-character/Alex-avatar.png");
-}
-
-.avatar-image-david {
-  --avatar-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/David/David_profile.png");
-}
-
-.avatar-image-liam {
-  --avatar-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Liam/Liam.png");
-}
-
-.avatar-image-maya {
-  --avatar-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Maya/Maya_profile.png");
-}
-
-.avatar-image-priya {
-  --avatar-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Priya-character/Priya-avatar.png");
-}
-
-.avatar-image-sandra {
-  --avatar-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/refs/heads/master/workforce-resilience/Sandra/Sandra_profile.png");
-}
-
-/* Socratic summary with CSS custom properties */
-.socratic-summary-jordan {
-  --socratic-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/master/workforce-resilience/Jordan%20-%20character/Jordan-avatar.png");
-}
-
 /* Hidden elements */
 .hidden {
   display: none;
@@ -5149,148 +5341,64 @@ input[type="text"] {
 .socratic-summary-jordan {
   --socratic-img: url("https://raw.githubusercontent.com/Explore-AI/Pictures/master/workforce-resilience/Jordan%20-%20character/Jordan-avatar.png");
 }
-
-/* Hidden elements */
-.hidden {
-  display: none;
+.custom-dropdown {
+  position: relative;
+  width: 100%;
 }
-
-/* Worksheet comparison grid styles */
-.worksheet-comparison-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.worksheet-comparison-card {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
-  padding: 16px;
-}
-
-.worksheet-comparison-image-container {
-  text-align: center;
-  margin-bottom: 12px;
-}
-
-.worksheet-comparison-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-.worksheet-comparison-title {
-  margin: 0 0 8px 0;
-  font-size: 1rem;
-}
-
-.worksheet-comparison-label {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.worksheet-comparison-text {
-  margin: 0 0 12px 0;
-  color: #666;
-}
-
-.worksheet-comparison-text:last-child {
-  margin: 0;
-}
-
-.worksheet-comparison-text-line-height {
-  line-height: 1.5;
-}
-
-/* SVG cursor styles */
-.svg-clickable {
+.custom-dropdown-trigger {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+  box-sizing: border-box;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 32px;
 }
-
-/* Hover flip circle button color variants */
-.hover-flip-primary {
-  background-color: var(--color-primary);
-  color: var(--color-light);
+.custom-dropdown-trigger:hover,
+.custom-dropdown-trigger:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
 }
-
-.hover-flip-accent {
-  background-color: var(--color-accent);
-  color: var(--color-light);
+.custom-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
 }
-
-.hover-flip-tertiary {
-  background-color: var(--color-tertiary);
-  color: var(--color-light);
+.custom-dropdown-menu.show {
+  display: block;
 }
-
-.hover-flip-electric {
-  background-color: var(--color-electric);
-  color: var(--color-primary);
+.custom-dropdown-option {
+  display: block;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.15s;
 }
-
-.hover-flip-primary-60 {
-  background-color: var(--color-primary-60);
-  color: var(--color-primary);
+.custom-dropdown-option:hover {
+  background: #f7fafc;
 }
-
-.hover-flip-tomato {
-  background-color: var(--color-tomato);
-  color: var(--color-light);
-}
-
-.hover-flip-gold {
-  background-color: var(--color-gold);
-  color: var(--color-primary);
-}
-
-.hover-flip-secondary {
-  background-color: var(--color-secondary);
-  color: var(--color-primary);
-}
-
-.hover-flip-secondary-60 {
-  background-color: var(--color-secondary-60);
-  color: var(--color-primary);
-}
-
-.hover-flip-tertiary-60 {
-  background-color: var(--color-tertiary-60);
-  color: var(--color-primary);
-}
-
-.hover-flip-primary-80 {
-  background-color: var(--color-primary-80);
-  color: var(--color-primary);
-}
-
-.hover-flip-accent-80 {
-  background-color: var(--color-accent-80);
-  color: var(--color-primary);
-}
-
-.hover-flip-tertiary-80 {
-  background-color: var(--color-tertiary-80);
-  color: var(--color-primary);
-}
-
-.hover-flip-secondary-80 {
-  background-color: var(--color-secondary-80);
-  color: var(--color-primary);
-}
-
-.hover-flip-tomato-80 {
-  background-color: var(--color-tomato-80);
-  color: var(--color-primary);
-}
-
-/* Footer alignment styles */
-.footer-center {
-  font-size: 80%;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.footer-image {
-  width: 200px;
+.custom-dropdown-option input[type="checkbox"] {
+  margin-right: 8px;
 }
