@@ -3882,7 +3882,14 @@ const atlasSystem = new AtlasSystem();
   ///////// Content/Page Tabs Functionality ///////////
   /////////////////////////////////////////////////////
   var currentTabIndex = 0;
-  var totalTabs = 5;
+  function getTotalTabs() {
+    try {
+      var panels = document.getElementsByClassName("content-tabs-panel");
+      return Math.max(1, panels.length || 1);
+    } catch (_) {
+      return 1;
+    }
+  }
   function showContentTab(evt, tabId) {
     var panels = document.getElementsByClassName("content-tabs-panel");
     for (var i = 0; i < panels.length; i++) {
@@ -3899,6 +3906,7 @@ const atlasSystem = new AtlasSystem();
   }
   function navigateTab(direction) {
     var newIndex = currentTabIndex + direction;
+    var totalTabs = getTotalTabs();
     if (newIndex >= 0 && newIndex < totalTabs) {
       currentTabIndex = newIndex;
       var tabId = "tab" + (currentTabIndex + 1);
@@ -3923,6 +3931,7 @@ const atlasSystem = new AtlasSystem();
     var prevButton = document.getElementById("prevButton");
     var nextButton = document.getElementById("nextButton");
     var pageIndicator = document.getElementById("pageIndicator");
+    var totalTabs = getTotalTabs();
     prevButton.disabled = currentTabIndex === 0;
     nextButton.disabled = currentTabIndex === totalTabs - 1;
     pageIndicator.textContent = "Section " + (currentTabIndex + 1) + " of " + totalTabs;
