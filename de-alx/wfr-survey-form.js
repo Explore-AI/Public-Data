@@ -3643,7 +3643,7 @@ const atlasSystem = new AtlasSystem();
     const resetBtn = quizModule.querySelector(".reset-btn");
     const feedback = quizModule.querySelector(".quiz-feedback");
     const draggableContainer = quizModule.querySelector(".draggable-items");
-    const isTableQuiz = quizModule.querySelector(".quiz-table") !== null;
+    const isTableQuiz = quizModule.querySelector(".quiz-table") !== null || quizModule.querySelectorAll("[data-column]").length > 0;
     draggables.forEach((draggable) => {
       draggable.addEventListener("dragstart", (e) => {
         draggedElement = e.target.closest(".draggable");
