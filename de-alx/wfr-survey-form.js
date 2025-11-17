@@ -3882,6 +3882,78 @@ const atlasSystem = new AtlasSystem();
   ///////// Content/Page Tabs Functionality ///////////
   /////////////////////////////////////////////////////
   var currentTabIndex = 0;
+
+  // Helper functions to fetch and manage multiple CSS class names
+  function getElementClasses(className) {
+    var elements = document.getElementsByClassName(className);
+    if (elements.length > 0) {
+      return elements[0].className.split(' ').filter(function(cls) {
+        return cls.trim() !== '';
+      });
+    }
+    return [className]; // fallback to original class name if no elements found
+  }
+
+  function addClasses(element, classArray) {
+    var currentClasses = element.className.split(' ').filter(function(cls) {
+      return cls.trim() !== '';
+    });
+    var newClasses = currentClasses.concat(classArray.filter(function(cls) {
+      return currentClasses.indexOf(cls) === -1;
+    }));
+    element.className = newClasses.join(' ');
+  }
+
+  function removeClasses(element, classArray) {
+    var currentClasses = element.className.split(' ');
+    var filteredClasses = currentClasses.filter(function(cls) {
+      return classArray.indexOf(cls.trim()) === -1;
+    });
+    element.className = filteredClasses.join(' ');
+  }
+
+  function getPanelClasses() {
+    return getElementClasses("content-tabs-panel");
+  }
+
+  function getPanelActiveClasses() {
+    // Get active class by checking if any panel has it, otherwise derive from base
+    var panels = document.getElementsByClassName("content-tabs-panel");
+    for (var i = 0; i < panels.length; i++) {
+      var classes = panels[i].className.split(' ');
+      var activeClasses = classes.filter(function(cls) {
+        return cls.indexOf('-active') !== -1;
+      });
+      if (activeClasses.length > 0) {
+        return activeClasses;
+      }
+    }
+    return ["content-tabs-panel-active"]; // fallback
+  }
+
+  function getButtonClasses() {
+    return getElementClasses("content-tabs-button");
+  }
+
+  function getButtonActiveClasses() {
+    // Get active class by checking if any button has it, otherwise derive from base
+    var buttons = document.getElementsByClassName("content-tabs-button");
+    for (var i = 0; i < buttons.length; i++) {
+      var classes = buttons[i].className.split(' ');
+      var activeClasses = classes.filter(function(cls) {
+        return cls.indexOf('-active') !== -1;
+      });
+      if (activeClasses.length > 0) {
+        return activeClasses;
+      }
+    }
+    return ["content-tabs-button-active"]; // fallback
+  }
+
+  function getBodyClasses() {
+    return getElementClasses("content-tabs-body");
+  }
+
   function getTotalTabs() {
     try {
       var panels = document.getElementsByClassName("content-tabs-panel");
@@ -3892,15 +3964,17 @@ const atlasSystem = new AtlasSystem();
   }
   function showContentTab(evt, tabId) {
     var panels = document.getElementsByClassName("content-tabs-panel");
+    var panelActiveClasses = getPanelActiveClasses();
     for (var i = 0; i < panels.length; i++) {
-      panels[i].className = panels[i].className.replace(" content-tabs-panel-active", "");
+      removeClasses(panels[i], panelActiveClasses);
     }
     var buttons = document.getElementsByClassName("content-tabs-button");
+    var buttonActiveClasses = getButtonActiveClasses();
     for (var i = 0; i < buttons.length; i++) {
-      buttons[i].className = buttons[i].className.replace(" content-tabs-button-active", "");
+      removeClasses(buttons[i], buttonActiveClasses);
     }
-    document.getElementById(tabId).className += " content-tabs-panel-active";
-    evt.currentTarget.className += " content-tabs-button-active";
+    addClasses(document.getElementById(tabId), panelActiveClasses);
+    addClasses(evt.currentTarget, buttonActiveClasses);
     currentTabIndex = parseInt(tabId.replace("tab", "")) - 1;
     updateNavigationButtons();
   }
@@ -3911,20 +3985,26 @@ const atlasSystem = new AtlasSystem();
       currentTabIndex = newIndex;
       var tabId = "tab" + (currentTabIndex + 1);
       var panels = document.getElementsByClassName("content-tabs-panel");
+      var panelActiveClasses = getPanelActiveClasses();
       for (var i = 0; i < panels.length; i++) {
-        panels[i].className = panels[i].className.replace(" content-tabs-panel-active", "");
+        removeClasses(panels[i], panelActiveClasses);
       }
       var buttons = document.getElementsByClassName("content-tabs-button");
+      var buttonActiveClasses = getButtonActiveClasses();
       for (var i = 0; i < buttons.length; i++) {
-        buttons[i].className = buttons[i].className.replace(" content-tabs-button-active", "");
+        removeClasses(buttons[i], buttonActiveClasses);
       }
-      document.getElementById(tabId).className += " content-tabs-panel-active";
-      buttons[currentTabIndex].className += " content-tabs-button-active";
+      addClasses(document.getElementById(tabId), panelActiveClasses);
+      addClasses(buttons[currentTabIndex], buttonActiveClasses);
       updateNavigationButtons();
-      window.scrollTo({
-        top: document.querySelector(".content-tabs-body").offsetTop - 10,
-        behavior: "smooth",
-      });
+      var bodyClasses = getBodyClasses();
+      var bodyElement = document.querySelector("." + bodyClasses[0]);
+      if (bodyElement) {
+        window.scrollTo({
+          top: bodyElement.offsetTop - 10,
+          behavior: "smooth",
+        });
+      }
     }
   }
   function updateNavigationButtons() {
