@@ -4071,10 +4071,19 @@ input[type="text"] {
   background: var(--color-accent-40);
   color: var(--color-light);
 }
+.content-tabs-button-discovery:hover {
+  background: var(--color-tertiary-40) !important;
+}
 .content-tabs-button-active {
   background: var(--color-accent);
   color: var(--color-light);
   border-bottom: 4px solid var(--color-accent);
+}
+
+.content-tabs-button-active-discovery {
+  background: var(--color-tertiary) !important;
+  color: var(--color-light);
+  border-bottom: 4px solid var(--color-tertiary-40) !important;
 }
 .content-tabs-body {
   width: 100%;
@@ -4090,6 +4099,11 @@ input[type="text"] {
   border-top: 4px solid var(--color-accent);
   border-bottom: 4px solid var(--color-accent);
   position: relative;
+}
+
+.content-tabs-body-inner-discovery {
+  border-top: 4px solid var(--color-tertiary);
+  border-bottom: 4px solid var(--color-tertiary);
 }
 .content-tabs-body-inner::before {
   content: "";
@@ -4148,6 +4162,9 @@ input[type="text"] {
 }
 .content-tabs-nav-button:hover {
   background: var(--color-accent);
+}
+.content-tabs-nav-button-discovery:hover {
+  background: var(--color-tertiary);
 }
 .content-tabs-nav-button:disabled {
   background: var(--color-light-background);
