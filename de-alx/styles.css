@@ -4224,6 +4224,13 @@ input[type="text"] {
 .lesson-info-trigger-button:hover {
   background: var(--color-primary-hover);
 }
+
+.lesson-info-trigger-button-two {
+  background: var(--color-tertiary);
+}
+.lesson-info-trigger-button-two:hover {
+  background: var(--color-tertiary-hover);
+}
 .lesson-info-button-icon {
   width: 24px;
   height: 24px;
@@ -4314,6 +4321,9 @@ input[type="text"] {
   align-items: center;
   justify-content: center;
   padding: 3px;
+}
+.lesson-info-icon-circle-two {
+  background: var(--color-tertiary);
 }
 .lesson-info-icon-image {
   width: 100%;
