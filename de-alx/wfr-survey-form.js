@@ -4841,3 +4841,40 @@ if (typeof window !== "undefined" && !window.PopupDialog) {
 
   wrap.addEventListener("mouseenter", hydrate, { once: true });
 })();
+
+// Sync for contenteditable divs
+function syncToHidden(div) {
+  const hidden = document.getElementById('hidden_' + div.id);
+  if (hidden) {
+    hidden.value = div.innerText;
+    hidden.dispatchEvent(new Event('input', { bubbles: true }));
+    // Directly call updateAutogen
+    if (window.updateAutogen) {
+      const container = div.closest('[data-atlas-capture="true"]');
+      if (container) window.updateAutogen(container);
+    }
+  }
+}
+
+function syncFromHidden(div) {
+  const hidden = document.getElementById('hidden_' + div.id);
+  if (hidden) div.innerText = hidden.value;
+}
+
+// Attach listeners to contenteditable divs
+const divs = document.querySelectorAll('div[contenteditable="true"]');
+divs.forEach(div => {
+  div.addEventListener('input', () => {
+    syncToHidden(div);
+  });
+  div.addEventListener('keyup', () => {
+    syncToHidden(div);
+  });
+});
+
+// Initial sync after Atlas restore
+setTimeout(() => {
+  divs.forEach(div => {
+    syncFromHidden(div);
+  });
+}, 2000);
