@@ -21,8 +21,8 @@ import urllib.request # <-- Used to call the AccuWeather API.
 
 # =============================================================
 # Fill in your details required to run the script 
-API_KEY = "" # <-- Obtained from your AccuWeather App
-LOCATION_ID = "306633" # <-- Obtained from the AccuWeather website
+API_KEY = "zpka_19e486a9facd462cbd167af2d4dd10cb_d7e507ef" # <-- Obtained from your AccuWeather App
+LOCATION_ID = "224758" # <-- Obtained from the AccuWeather website
 # =============================================================
 
 # Here we create a function that takes in our credentials and
@@ -58,6 +58,13 @@ def get_weather(api_key, location_id):
     return data
 
 def parse_accuweather_data(json_data):
+    current = json_data[0]
+    temp_c = current['Temperature']['Metric']['Value']
+    feels_like_c = current['ReelFeelTemperature']['Metric']['Value']
+    weather_text = current['Weather_text']
+    print(f"Weather: {weather_text}")
+    print(f"Temperature: {temp_c}")
+    print(f"Feels like: {feels_like_c}")
     """Function to extract specific fields from the received
        AccuWeather response.  
 
