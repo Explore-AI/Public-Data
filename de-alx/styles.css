@@ -33,23 +33,23 @@
 
     --font-family: 'Poppins', sans-serif;
 
-    --primary-logo-icon: url("https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/Navy_X.png");
-    --secondary-logo-icon: url("https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/Green_X.png");
-    --light-logo-icon: url("https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/White_X.png");
-    --socratic-icon: url("https://raw.githubusercontent.com/Explore-AI/Pictures/master/new_branding/Socratic_Girl_thinking.png");
+    --primary-logo-icon: url("https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/Navy_X.png");
+    --secondary-logo-icon: url("https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/Green_X.png");
+    --light-logo-icon: url("https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/White_X.png");
+    --socratic-icon: url("https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/new_branding/Socratic_Girl_thinking.png");
     
-    --icon-primary: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/ALX_Navy.png');
-    --icon-light: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/ALX_logo-light.png');
+    --icon-primary: url('https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/ALX_Navy.png');
+    --icon-light: url('https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/ALX_logo-light.png');
     
-    --twitter-icon-primary: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/square-x-twitter.png');
-    --linkedin-icon-primary: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/linkedin.png');
-    --instagram-icon-primary: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/square-instagram.png');
-    --facebook-icon-primary: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/square-facebook.png');
+    --twitter-icon-primary: url('https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/square-x-twitter.png');
+    --linkedin-icon-primary: url('https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/linkedin.png');
+    --instagram-icon-primary: url('https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/square-instagram.png');
+    --facebook-icon-primary: url('https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/square-facebook.png');
 
     --amin-name: "Amin Yusuf";
-    --amin-icon: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/Amin%20avatar_4.png');
+    --amin-icon: url('https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/Amin%20avatar_4.png');
     --tunde-name: "Tunde";
-    --tunde-icon: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/Tunde%20avatar_3.png');
+    --tunde-icon: url('https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/Tunde%20avatar_3.png');
 }
 
 /* General styling */

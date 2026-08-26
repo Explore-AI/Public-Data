@@ -33,23 +33,23 @@
 
     --font-family: 'Lexend', sans-serif;
 
-    --primary-logo-icon: url("https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Dropdown_Arrow_Navy.png?raw=true");
-    --secondary-logo-icon: url("https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Dropdown_Arrow_Green.png?raw=true");
-    --light-logo-icon: url("https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Dropdown_Arrow_Off_White.png?raw=true");
-    --socratic-icon: url("https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Socratic_Girl_thinking.png?raw=true");
+    --primary-logo-icon: url("https://github.com/alx-exploreai-academy/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Dropdown_Arrow_Navy.png?raw=true");
+    --secondary-logo-icon: url("https://github.com/alx-exploreai-academy/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Dropdown_Arrow_Green.png?raw=true");
+    --light-logo-icon: url("https://github.com/alx-exploreai-academy/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Dropdown_Arrow_Off_White.png?raw=true");
+    --socratic-icon: url("https://github.com/alx-exploreai-academy/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Socratic_Girl_thinking.png?raw=true");
     
-    --icon-primary: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/SET_Logo_Navy.png?raw=true');
-    --icon-light: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/SET_Logo_White.png?raw=true');
+    --icon-primary: url('https://github.com/alx-exploreai-academy/Pictures/blob/master/Elmwood_branding/Savanna_Assets/SET_Logo_Navy.png?raw=true');
+    --icon-light: url('https://github.com/alx-exploreai-academy/Pictures/blob/master/Elmwood_branding/Savanna_Assets/SET_Logo_White.png?raw=true');
     
-    --twitter-icon-primary: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Twitter_Logo.png?raw=true');
-    --linkedin-icon-primary: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/LinkedIn_Logo.png?raw=true');
-    --instagram-icon-primary: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Instagram_Logo.png?raw=true');
-    --facebook-icon-primary: url('https://github.com/Explore-AI/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Facebook_Logo.png?raw=true');
+    --twitter-icon-primary: url('https://github.com/alx-exploreai-academy/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Twitter_Logo.png?raw=true');
+    --linkedin-icon-primary: url('https://github.com/alx-exploreai-academy/Pictures/blob/master/Elmwood_branding/Savanna_Assets/LinkedIn_Logo.png?raw=true');
+    --instagram-icon-primary: url('https://github.com/alx-exploreai-academy/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Instagram_Logo.png?raw=true');
+    --facebook-icon-primary: url('https://github.com/alx-exploreai-academy/Pictures/blob/master/Elmwood_branding/Savanna_Assets/Facebook_Logo.png?raw=true');
 
     --amin-name: "Amin Yusuf";
-    --amin-icon: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/Amin%20avatar_4.png');
+    --amin-icon: url('https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/Amin%20avatar_4.png');
     --tunde-name: "Tunde";
-    --tunde-icon: url('https://raw.githubusercontent.com/Explore-AI/Pictures/master/alx-courses/aice/assets/Tunde%20avatar_3.png');
+    --tunde-icon: url('https://raw.githubusercontent.com/alx-exploreai-academy/Pictures/master/alx-courses/aice/assets/Tunde%20avatar_3.png');
 }
 
 /* General styling */
